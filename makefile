@@ -84,4 +84,4 @@ mod:
 test:
 	@echo "Making tests: $(TEST_NAME)"
 	$(CXX) -o $(TEST_NAME) $(TEST_SOURCES) 
-	./$(TEST_NAME) .
+	./$(TEST_NAME)
