@@ -3,9 +3,7 @@
 
 int main (void) 
 {
-    std::string nombre;
-    std::cout << "Hello world" << std::endl;
-    std::cout << "Introduce tu nombre: ";
-    std::cin >> nombre;
+    std::cout << "Hello world im Elena" << std::endl;
+    std::cout << "This is 2 + 4: " << 2 + 4 << std::endl;
     return 0;
 }
