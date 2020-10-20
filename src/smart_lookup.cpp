@@ -8,6 +8,10 @@
 
 int main (void) 
 {
-    std::cout << "Hello project" << std::endl;
+    Environment obj1(20,20);
+    obj1.clear_obs();
+    obj1.set_obs(8, 11);
+    obj1.set_obs(3, 6);
+    std::cout << obj1 << std::endl;
     return 0;
 }

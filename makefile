@@ -5,7 +5,7 @@ SRC_PATH = src
 BUILD_PATH = build
 BIN_PATH = $(BUILD_PATH)/bin
 
-TEST_PATH = tests
+TEST_PATH = test
 
 # executable # 
 BIN_NAME = runner
@@ -81,7 +81,7 @@ $(BUILD_PATH)/%.o: $(SRC_PATH)/%.$(SRC_EXT)
 mod:
 	g++ -o modif_runner ./modif/modif_main.cpp ./modif/ISBN.cpp
 
-test:
+testing:
 	@echo "Making tests: $(TEST_NAME)"
 	$(CXX) -o $(TEST_NAME) $(TEST_SOURCES) 
 	./$(TEST_NAME)
