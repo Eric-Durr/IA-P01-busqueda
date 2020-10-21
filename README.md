@@ -19,8 +19,13 @@ programación C++ al cual se le han añadido algunas librerías.
 ```
 
 ## Autores
-
+    [Elena Rijo García](alu0101265421@ull.edu.es)
+    [Eric Dürr Sierra](eric.durr.20@ull.edu.es) 
 ## Dependencias
+
+- Catch2 (Librería de testing C++ para aplicar TDD)
+    [Proyecto GitHub](https://github.com/catchorg/Catch2)
+    [Video informativo](https://www.youtube.com/watch?v=CGuWYqHsOxI)
 
 ## Uso del proyecto
 
