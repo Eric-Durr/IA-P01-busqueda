@@ -18,7 +18,7 @@ class Environment
         ~Environment(){}
         int size() { return slots_.size(); }
         Slot& at(int i, int j) { return slots_[pos(i, j)]; } 
-        void set_obs(int i, int j) { slots_[pos(i, j)].set_obs(true); }
+        int set_obs(int i, int j);
         void delete_obs(int i, int j) { slots_[pos(i, j)].set_obs(false); }
         void clear_obs();
 
