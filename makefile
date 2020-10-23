@@ -81,7 +81,8 @@ $(BUILD_PATH)/%.o: $(SRC_PATH)/%.$(SRC_EXT)
 mod:
 	g++ -o modif_runner ./modif/modif_main.cpp ./modif/ISBN.cpp
 
-testing:
+.PHONY: clean all test
+test:
 	@echo "Making tests: $(TEST_NAME)"
 	$(CXX) -o $(TEST_NAME) $(TEST_SOURCES) 
 	./$(TEST_NAME)
