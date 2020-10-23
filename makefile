@@ -23,6 +23,7 @@ TEST_SOURCES = $(shell find $(TEST_PATH) -name '*.$(SRC_EXT)' | sort -k 1nr | cu
 # Set the object file names, with the source directory stripped
 # from the path, and the build path prepended in its place
 OBJECTS = $(SOURCES:$(SRC_PATH)/%.$(SRC_EXT)=$(BUILD_PATH)/%.o)
+
 # Set the dependency files that will be used to add header dependencies
 DEPS = $(OBJECTS:.o=.d)
 
@@ -84,5 +85,5 @@ mod:
 .PHONY: clean all test
 test:
 	@echo "Making tests: $(TEST_NAME)"
-	$(CXX) -o $(TEST_NAME) $(TEST_SOURCES) 
+	$(CXX) -o $(TEST_NAME) $(TEST_SOURCES) $(SOURCES)
 	./$(TEST_NAME)

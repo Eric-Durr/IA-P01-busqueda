@@ -1,6 +1,5 @@
 #include "../include/catch/catch.h"
 #include "../include/environment.hpp"
-#include "../src/environment.cpp"
 
 
 SCENARIO("Testing the enviroment")
