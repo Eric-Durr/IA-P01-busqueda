@@ -5,7 +5,7 @@ SRC_PATH = src
 BUILD_PATH = build
 BIN_PATH = $(BUILD_PATH)/bin
 
-TEST_PATH = test
+TEST_PATH = tests
 
 # executable # 
 BIN_NAME = runner
@@ -23,7 +23,6 @@ TEST_SOURCES = $(shell find $(TEST_PATH) -name '*.$(SRC_EXT)' | sort -k 1nr | cu
 # Set the object file names, with the source directory stripped
 # from the path, and the build path prepended in its place
 OBJECTS = $(SOURCES:$(SRC_PATH)/%.$(SRC_EXT)=$(BUILD_PATH)/%.o)
-
 # Set the dependency files that will be used to add header dependencies
 DEPS = $(OBJECTS:.o=.d)
 
@@ -82,8 +81,7 @@ $(BUILD_PATH)/%.o: $(SRC_PATH)/%.$(SRC_EXT)
 mod:
 	g++ -o modif_runner ./modif/modif_main.cpp ./modif/ISBN.cpp
 
-.PHONY: clean all test
 test:
 	@echo "Making tests: $(TEST_NAME)"
-	$(CXX) -o $(TEST_NAME) $(TEST_SOURCES) $(SOURCES)
-	./$(TEST_NAME)
+	$(CXX) -o $(TEST_NAME) $(TEST_SOURCES) 
+	./$(TEST_NAME) 
