@@ -1,37 +1,18 @@
 #include "../include/slot.hpp"
 
 Slot::Slot(int op) {
-  switch (op) {
-    case 0:
-      obstacle_ = 0;
-      break;
-
-    case 1:
-      obstacle_ = 1;
-      break;
-
-    case 3:
-      /* coche */
-      break;
-    default:
-      obstacle_ = 0;
-      break;
-  }
+  s_change(op);
 }
+
 int Slot::s_change(int stype) {
   switch (stype) {
     case 0:
-      obstacle_ = 0;
-      break;
-
     case 1:
-      obstacle_ = 1;
-      break;
-
     case 2:
-      obstacle_ = 2;
+    case 3:
+      obstacle_ = stype;
       break;
-
+      
     default:
       return 1;
       break;
@@ -40,8 +21,10 @@ int Slot::s_change(int stype) {
 }
 
 std::ostream& operator<<(std::ostream& os, const Slot& obj) {
-  if (obj.obstacle_) {
+  if (obj.obstacle_ == 1) {
     os << "■";
+  } else if (obj.obstacle_ == 3){
+    os << "X";
   } else {
     os << " ";
   }

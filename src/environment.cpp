@@ -2,19 +2,31 @@
 
 #include <iostream>
 
-int Environment::set_obs(int i, int j) {
+int Environment::pos(int i, int j) const{
+  return (i -1)* n_ + j - 1;     
+}
+
+int Environment::set(int i, int j, int type) {
   if ((i >= 0 && i < m_) && (j >= 0 && j < n_)) {
-    slots_[pos(i, j)].set_obs(true);
+    slots_[pos(i, j)].s_change(type);
     return 0;
   } else {
     return 1;
   }
 }
 
+int Environment::set_obs(int i, int j) {
+  return set(i,j,1);  
+}
+
+int Environment::set_meta(int i, int j) {
+  return set(i,j,3);
+}
+
 void Environment::clear_obs() {
-  for (int i = 0; i < m_; i++) {
-    for (int j = 0; j < n_; j++) {
-      at(i, j).set_obs(false);
+  for (int i = 1; i <= m_; i++) {
+    for (int j = 1; j <= n_; j++) {
+      delete_obs(i,j);
     }
   }
 }
