@@ -7,7 +7,7 @@ int Environment::pos(int i, int j) const{
 }
 
 int Environment::set(int i, int j, int type) {
-  if ((i >= 0 && i < m_) && (j >= 0 && j < n_)) {
+  if ((i >= 1 && i <= m_) && (j >= 1 && j <= n_)) {
     slots_[pos(i, j)].s_change(type);
     return 0;
   } else {
@@ -36,9 +36,9 @@ std::ostream& operator<<(std::ostream& os, Environment& obj) {
   for (int i = 0; i < obj.n_; i++) os << "─";
   os << "┐\n";
 
-  for (int i = 0; i < obj.m_; i++) {
+  for (int i = 1; i <= obj.m_; i++) {
     os << "│";
-    for (int j = 0; j < obj.n_; j++) {
+    for (int j = 1; j <= obj.n_; j++) {
       os << obj.at(i, j);
     }
     os << "│" << i << "\n";

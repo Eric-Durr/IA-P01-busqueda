@@ -16,6 +16,7 @@ class Environment
             slots_.resize(m_ * n_);
         }
         ~Environment(){}
+        
         int size() { return slots_.size(); }
         Slot& at(int i, int j) { return slots_[pos(i, j)]; } 
         int set_obs(int i, int j); //Cambia a Obstaculo

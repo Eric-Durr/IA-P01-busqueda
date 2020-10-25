@@ -1,26 +1,47 @@
-#include "../include/slot.hpp"
-#include "../include/environment.hpp"
-#include "../include/obstacle.hpp"
-#include "../include/smart_car.hpp"
-
 #include <iostream>
 
+#include "../include/environment.hpp"
+#include "../include/obstacle.hpp"
+#include "../include/slot.hpp"
+#include "../include/smart_car.hpp"
 
-int main (void) 
-{
-    Environment obj1(6,12);
+int main(void) {
 
-    obj1.set_obs(3, 2);
-    obj1.set_obs(5, 10);
-    obj1.set_meta(2,2);
-    std::cout << obj1 << std::endl;
+  int modo, fil, col, n_obs;
+  int i, o_fil, o_col, m_fil, m_col;
+  std::cout << "PRÁCTICA: Estrategias de Búsqueda.\n";
+  std::cout << "¿De qué manera desea ejecutar su programa? \n";
+  std::cout << "1.Modo manual.\t 2.Modo aleatorio.\n";
+  std::cout << "Modo: ";
+  std::cin >> modo;
 
-    obj1.delete_obs(3,2);
-    std::cout << obj1 << std::endl;
+  if(modo == 1){
+    std::cout << "\n1.Modo manual.\n";
+    std::cout << "Introduzca las dimensiones del entorno(Fila Columna): ";
+    std::cin >> fil >> col;
+    Environment tab(fil,col);
 
-    obj1.clear_obs();
-    std::cout << obj1 << std::endl;
+    std::cout << "\nIntroduzca el número de obstáculos deseados: ";
+    std::cin >> n_obs;
+    
+    for (i = 1; i <= n_obs; i++) {
+      std::cout << "\nIntroduzca la posición del obstáculo [" << i <<"] (Fila Columna): ";
+      std::cin >> o_fil >> o_col;
+      tab.set_obs(o_fil, o_col);
+    }
+    std::cout << "\nIntroduzca la posición de la meta (Fila Columna):";
+    std::cin >> m_fil >> m_col;
+    tab.set_meta(m_fil, m_col);
 
+    std::cout << "\nEntorno y visualiacion de la trayectoria:\n";
+    std::cout << tab << std::endl;
+  }
+  if (modo == 2){
+    std::cout << "\n1.Modo aleatorio.\n";
+    std::cout << "Introduzca las dimensiones del entorno(Fila Columna): ";
+    std::cin >> fil >> col;
+    Environment tab(fil,col);
+  }
 
-    return 0;
+  return 0;
 }
