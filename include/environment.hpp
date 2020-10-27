@@ -9,6 +9,7 @@ class Environment
     private:
         int m_, n_;
         std::vector<Slot> slots_;
+        
     public:
         Environment(int row, int col): 
         m_(row),
