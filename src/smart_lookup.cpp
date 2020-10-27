@@ -6,7 +6,6 @@
 #include "../include/smart_car.hpp"
 
 int main(void) {
-
   int modo, fil, col, n_obs;
   int i, o_fil, o_col, m_fil, m_col;
   std::cout << "PRÁCTICA: Estrategias de Búsqueda.\n";
@@ -34,12 +33,14 @@ int main(void) {
       }
       std::cout << "\nIntroduzca la posición de la meta (Fila Columna): ";
       std::cin >> m_fil >> m_col;
-      tab.set_meta(m_fil, m_col);
+      tab.set_goal(m_fil, m_col);
+
+      tab.set_car(1, 1);
 
       std::cout << "\nEntorno y visualiacion de la trayectoria:\n";
       std::cout << tab << std::endl;
-    }
-    else if (modo == 2) {
+
+    } else if (modo == 2) {
       std::cout << "\n2.Modo aleatorio.\n";
       std::cout << "Introduzca las dimensiones del entorno(Fila Columna): ";
       std::cin >> fil >> col;
@@ -50,13 +51,16 @@ int main(void) {
 
       std::cout << "\nIntroduzca la posición de la meta (Fila Columna): ";
       std::cin >> m_fil >> m_col;
-      tab.set_meta(m_fil, m_col);
+      tab.set_goal(m_fil, m_col);
+
+      tab.set_car(1, 1);
 
       std::cout << "\nEntorno y visualiacion de la trayectoria:\n";
       std::cout << tab << std::endl;
-    }
-    else{
-      std::cerr << "[!] ERROR. Valor introducido inválido. Vuelva a ejecutar el programa.\n\n";
+
+    } else {
+      std::cerr << "[!] ERROR. Valor introducido inválido. Vuelva a ejecutar "
+                   "el programa.\n\n";
       return 1;
     }
 

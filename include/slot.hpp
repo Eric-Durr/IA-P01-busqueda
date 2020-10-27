@@ -1,21 +1,31 @@
-#pragma once
+#ifndef SLOT_HPP_
+#define SLOT_HPP_
 
-#include "smart_car.hpp"
 #include <iostream>
 
-class Slot
-{
-    private:
-        int  obstacle_;
-        SmartCar car_; 
-    public:
-        Slot(int op = 0);
-        ~Slot(){}
-        
-        bool is_obs() { return obstacle_; }
-        void set_obs() { obstacle_ = 1; }  //Pone obstaculo a 1
-        int s_type() {return obstacle_;}  //devuelve lo que hay
-        int s_change(int stype); //Pone el tipo de correspondiente
+#include "smart_car.hpp"
 
-        friend std::ostream& operator<< (std::ostream& os, const Slot& obj);
+enum slot_t { V, O, C, G };
+
+class Slot {
+ private:
+  int loc_i_, loc_j_;
+  int obstacle_;
+  SmartCar car_;
+
+ public:
+  Slot(int loc_i = 1, int loc_j = 1, slot_t op = V);
+
+  ~Slot() {}
+
+  bool is_obs() { return obstacle_; }
+  void set_obs() { obstacle_ = O; }  // Pone obstaculo a 1
+  int s_type() { return obstacle_; }
+  int s_change(slot_t op);
+
+  SmartCar& get_car() { return car_; }
+
+  friend std::ostream& operator<<(std::ostream& os, const Slot& obj);
 };
+
+#endif

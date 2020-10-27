@@ -1,37 +1,45 @@
-#pragma once
-#include "slot.hpp"
+#ifndef ENV_HPP_
+#define ENV_HPP_
+
+#include <stdlib.h>
+
 #include <iostream>
 #include <vector>
-#include <stdlib.h> 
 
-class Environment
-{
-    private:
-        int m_, n_;
-        std::vector<Slot> slots_;
-        
-    public:
-        Environment(int row, int col): 
-        m_(row),
-        n_(col) 
-        {
-            slots_.resize(m_ * n_);
-        }
-        ~Environment(){}
+#include "slot.hpp"
 
-        int size() { return slots_.size(); }
-        Slot& at(int i, int j) { return slots_[pos(i, j)]; } 
-        int set_obs(int i, int j); //Cambia a Obstaculo
-        int set_meta(int i, int j); //Cambia a meta
-        void delete_obs(int i, int j) { slots_[pos(i, j)].s_change(0); } //Elimina una casilla determinada
-        void clear_obs(); //Limpia el entorno
+class Environment {
+ private:
+  int m_, n_;
+  std::vector<Slot> slots_;
 
-        void random_obs(float ratio); // Genarador de obstaculos
+ public:
+  Environment(int row = 0, int col = 0);
+  Environment(Environment& env);
+  ~Environment() {}
 
-        friend std::ostream& operator<< (std::ostream& os,  Environment& obj);
+  int size() { return slots_.size(); }
+  Slot& at(int i, int j);  // Checked
+  int pos(int i, int j) const;
+  SmartCar& get_car();
 
-        private:
+  int set_obs(int i, int j);   // Cambia a Obstaculo #checked
+  int set_goal(int i, int j);  // Cambia a meta #checked
+  int set_car(int i, int j);
 
-        int pos(int i, int j) const;
-        int set(int i, int j, int type); //Cambia a un tipo concreto de elemento
+  void delete_obs(int i, int j) {
+    slots_[pos(i, j)].s_change(V);
+  }                  // Elimina una casilla determinada
+  void clear_obs();  // Limpia el entorno
+
+  void random_obs(float ratio);  // Genarador de obstaculos
+
+  void move_car(cardinal x, int steps);
+
+  friend std::ostream& operator<<(std::ostream& os, Environment& obj);
+
+ private:
+  int set(int i, int j, slot_t type);  // Cambia a un tipo concreto de elemento
 };
+
+#endif

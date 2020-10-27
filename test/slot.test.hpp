@@ -1,7 +1,5 @@
 #include "../include/catch/catch.h"
 #include "../include/slot.hpp"
-#include "../src/slot.cpp"
-#include "../src/smart_car.cpp"
 
 SCENARIO("Creation of the slot")
 {

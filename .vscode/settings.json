@@ -1,4 +1,6 @@
 {
+    "C_Cpp.clang_format_fallbackStyle": "Google",
+    "editor.formatOnSave": true,
     "files.associations": {
         "iosfwd": "cpp",
         "array": "cpp",
