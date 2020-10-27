@@ -24,7 +24,7 @@ Environment::Environment(Environment& env) {
 }
 
 Slot& Environment::at(int i, int j) {
-  assert(i >= 1 && j >= 1 && i <= m_ && j <= n_);
+  // assert(i >= 1 && j >= 1 && i <= m_ && j <= n_);
 
   return slots_[pos(i, j)];
 }
@@ -78,30 +78,43 @@ void Environment::random_obs(float ratio) {
 
 void Environment::move_car(cardinal x, int steps) {
   std::vector<int> current_pos = get_car().pos();
+  std::cout << current_pos[0] << current_pos[1] << "\n";
+  get_car().report_env(std::cout);
   switch (x) {
     case N:
-      if (get_car().sensor(N) == false)
+      if (get_car().sensor(N) == false) {
         at(current_pos[0], current_pos[1]).s_change(V);
-      at(current_pos[0] - steps, current_pos[1]).s_change(C);
+        at(current_pos[0] - steps, current_pos[1]).s_change(C);
+        get_car().move(N, steps);
+      }
       break;
     case S:
-      if (get_car().sensor(S) == false)
+      if (get_car().sensor(S) == false) {
         at(current_pos[0], current_pos[1]).s_change(V);
-      at(current_pos[0] + steps, current_pos[1]).s_change(C);
+        at(current_pos[0] + steps, current_pos[1]).s_change(C);
+        get_car().move(S, steps);
+      }
       break;
     case E:
-      if (get_car().sensor(E) == false)
+      if (get_car().sensor(E) == false) {
         at(current_pos[0], current_pos[1]).s_change(V);
-      at(current_pos[0], current_pos[1] + steps).s_change(C);
+        at(current_pos[0], current_pos[1] + steps).s_change(C);
+        get_car().move(E, steps);
+      }
       break;
     case W:
-      if (get_car().sensor(W) == false)
+      if (get_car().sensor(W) == false) {
         at(current_pos[0], current_pos[1]).s_change(V);
-      at(current_pos[0], current_pos[1] - steps).s_change(C);
+        at(current_pos[0], current_pos[1] - steps).s_change(C);
+        get_car().move(W, steps);
+      }
       break;
     default:
       break;
   }
+
+  current_pos = get_car().pos();
+  std::cout << current_pos[0] << current_pos[1] << "\n";
 }
 
 std::ostream& operator<<(std::ostream& os, Environment& obj) {

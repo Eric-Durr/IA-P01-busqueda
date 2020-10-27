@@ -1,38 +1,38 @@
 #ifndef S_CAR_HPP_
 #define S_CAR_HPP_
 
+#include <algorithm>
 #include <iostream>
 #include <vector>
-#include <algorithm>
 
-enum cardinal {N, S, E, W};
+enum cardinal { N, W, S, E };
 
 class Environment;
 class SmartCar {
-    private:
-        int loc_i_, loc_j_;
-        std::vector<bool> sensor_;
-    public:
-        SmartCar(int loc_i = 0, int loc_j = 0);
-        SmartCar(const SmartCar& car);
-        ~SmartCar(){};
+ private:
+  int loc_i_, loc_j_;
+  std::vector<bool> sensor_;
 
-        void pos(int i, int j);
-        std::vector<int> pos();
+ public:
+  SmartCar(int loc_i = 1, int loc_j = 1);
+  SmartCar(const SmartCar& car);
+  ~SmartCar(){};
 
-        std::vector<bool>& sensor(void) { return sensor_; }
-        bool sensor(cardinal x) { return sensor_[x]; }
-        void move(cardinal x, int steps);
-        std::ostream& report_env(std::ostream& os);
+  void pos(int i, int j);
+  std::vector<int> pos();
 
-    private:
-        void check_environment(Environment env);
+  std::vector<bool>& sensor(void) { return sensor_; }
+  bool sensor(cardinal x) { return sensor_[x]; }
+  void move(cardinal x, int steps);
+  std::ostream& report_env(std::ostream& os);
 
-        void inc_i(int num) { loc_i_ += num; }
-        void inc_j(int num) { loc_j_ += num; }
-        void dec_i(int num) { loc_i_ -= num; }
-        void dec_j(int num) { loc_j_ -= num; }
+ private:
+  void check_environment(Environment env);
 
+  void inc_i(int num) { loc_i_ += num; }
+  void inc_j(int num) { loc_j_ += num; }
+  void dec_i(int num) { loc_i_ -= num; }
+  void dec_j(int num) { loc_j_ -= num; }
 };
 
 #endif

@@ -18,7 +18,7 @@ class Slot {
 
   ~Slot() {}
 
-  bool is_obs() { return obstacle_; }
+  bool is_obs() { return obstacle_ == O; }
   void set_obs() { obstacle_ = O; }  // Pone obstaculo a 1
   int s_type() { return obstacle_; }
   int s_change(slot_t op);
