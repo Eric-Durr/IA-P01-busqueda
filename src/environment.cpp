@@ -30,7 +30,7 @@ Slot& Environment::at(int i, int j) {
 }
 
 int Environment::pos(int i, int j) const {
-  if (i >= 0 && j >= 0 && i <= m_ && j <= n_) {
+  if (i >= 1 && j >= 1 && i <= m_ && j <= n_) {
     return (i - 1) * n_ + j - 1;
   } else {
     return -1;
@@ -76,10 +76,11 @@ void Environment::random_obs(float ratio) {
   }
 }
 
-void Environment::move_car(cardinal x, int steps) {
+void Environment::move_car(cardinal x, int steps, Environment& env) {
   std::vector<int> current_pos = get_car().pos();
   std::cout << current_pos[0] << current_pos[1] << "\n";
   get_car().report_env(std::cout);
+  get_car().check_environment(env);
   switch (x) {
     case N:
       if (get_car().sensor(N) == false) {

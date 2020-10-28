@@ -26,6 +26,8 @@ programación C++ al cual se le han añadido algunas librerías.
 - Catch2 (Librería de testing C++ para aplicar TDD)
     [Proyecto GitHub](https://github.com/catchorg/Catch2)
     [Video informativo](https://www.youtube.com/watch?v=CGuWYqHsOxI)
+- Algoritmo de busqueda
+    [ALGORITMO DE BÚSQUEDA A*](https://escarbandocodigo.wordpress.com/2011/07/11/1051/)
 
 ## Uso del proyecto
 

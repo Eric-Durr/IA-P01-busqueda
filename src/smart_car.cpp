@@ -22,8 +22,7 @@ void SmartCar::pos(int i, int j) {
 std::vector<int> SmartCar::pos() { return std::vector<int>{loc_i_, loc_j_}; }
 
 void SmartCar::move(cardinal x, int steps) {
-  // check_environment();
-  switch (x) {
+    switch (x) {
     case N:
       if (sensor(N) == false) dec_i(steps);
       break;
@@ -54,9 +53,7 @@ std::ostream& SmartCar::report_env(std::ostream& os) {
   return os;
 }
 
-// Private methods
-
-void SmartCar::check_environment(Environment env) {
+void SmartCar::check_environment(Environment& env) {
   if (env.pos(loc_i_ - 1, loc_j_) == -1) {
     sensor_[N] = true;
   } else {

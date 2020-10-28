@@ -26,9 +26,9 @@ class SmartCar {
   void move(cardinal x, int steps);
   std::ostream& report_env(std::ostream& os);
 
- private:
-  void check_environment(Environment env);
+  void check_environment(Environment& env);
 
+ private:
   void inc_i(int num) { loc_i_ += num; }
   void inc_j(int num) { loc_j_ += num; }
   void dec_i(int num) { loc_i_ -= num; }

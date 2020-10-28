@@ -36,11 +36,9 @@ int main(void) {
       tab.set_goal(m_fil, m_col);
 
       tab.set_car(1, 1);
-      tab.move_car(S, 3);
-      tab.move_car(W, 1);
-      tab.move_car(W, 1);
-
-      tab.move_car(N, 1);
+      tab.move_car(S, 3, tab);
+      tab.move_car(N, 1, tab);
+      tab.move_car(E, 1, tab);
 
       std::cout << "\nEntorno y visualiacion de la trayectoria:\n";
       std::cout << tab << std::endl;

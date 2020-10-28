@@ -34,7 +34,7 @@ class Environment {
 
   void random_obs(float ratio);  // Genarador de obstaculos
 
-  void move_car(cardinal x, int steps);
+  void move_car(cardinal x, int steps, Environment& env);
 
   friend std::ostream& operator<<(std::ostream& os, Environment& obj);
 
