@@ -14,7 +14,7 @@ class SmartCar {
   std::vector<bool> sensor_;
 
  public:
-  SmartCar(int loc_i = 1, int loc_j = 1);
+  SmartCar(int loc_i = 0, int loc_j = 0);
   SmartCar(const SmartCar& car);
   ~SmartCar(){};
 

@@ -14,7 +14,7 @@ class Slot {
   SmartCar car_;
 
  public:
-  Slot(int loc_i = 1, int loc_j = 1, slot_t op = V);
+  Slot(int loc_i = 0, int loc_j = 0, slot_t op = V);
 
   ~Slot() {}
 

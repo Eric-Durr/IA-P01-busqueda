@@ -1,7 +1,7 @@
 #include "../include/slot.hpp"
 
 Slot::Slot(int loc_i, int loc_j, slot_t op) : loc_i_(loc_i), loc_j_(loc_j) {
-  // SmartCar car(loc_i, loc_j);
+  car_.pos(loc_i, loc_j);
   switch (op) {
     case V:
       obstacle_ = 0;
@@ -10,7 +10,6 @@ Slot::Slot(int loc_i, int loc_j, slot_t op) : loc_i_(loc_i), loc_j_(loc_j) {
       obstacle_ = 1;
       break;
     case C:
-      // car_ = car;
       obstacle_ = 2;
       break;
     case G:

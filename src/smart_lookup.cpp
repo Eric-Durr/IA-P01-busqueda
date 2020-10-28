@@ -25,24 +25,28 @@ int main(void) {
       std::cout << "\nIntroduzca el número de obstáculos deseados: ";
       std::cin >> n_obs;
 
-      for (i = 1; i <= n_obs; i++) {
-        std::cout << "\nIntroduzca la posición del obstáculo [" << i
+      for (i = 0; i < n_obs; i++) {
+        std::cout << "\nIntroduzca la posición del obstáculo [" << i + 1
                   << "] (Fila Columna): ";
         std::cin >> o_fil >> o_col;
-        tab.set_obs(o_fil, o_col);
+        tab.set_obs(o_fil - 1, o_col - 1);
       }
       std::cout << "\nIntroduzca la posición de la meta (Fila Columna): ";
       std::cin >> m_fil >> m_col;
-      tab.set_goal(m_fil, m_col);
+      tab.set_goal(m_fil - 1, m_col - 1);
 
-      tab.set_car(1, 1);
-      tab.move_car(S, 3, tab);
-      tab.move_car(N, 1, tab);
-      tab.move_car(E, 1, tab);
+      tab.set_car(0, 1);
 
       std::cout << "\nEntorno y visualiacion de la trayectoria:\n";
       std::cout << tab << std::endl;
 
+      tab.move_car(S, 3, tab);
+      /*tab.move_car(N, 1, tab);
+      tab.move_car(E, 1, tab);
+*/
+
+      std::cout << "\nEntorno y visualiacion de la trayectoria:\n";
+      std::cout << tab << std::endl;
     } else if (modo == 2) {
       std::cout << "\n2.Modo aleatorio.\n";
       std::cout << "Introduzca las dimensiones del entorno(Fila Columna): ";
@@ -56,7 +60,7 @@ int main(void) {
       std::cin >> m_fil >> m_col;
       tab.set_goal(m_fil, m_col);
 
-      tab.set_car(1, 1);
+      tab.set_car(0, 0);
 
       std::cout << "\nEntorno y visualiacion de la trayectoria:\n";
       std::cout << tab << std::endl;

@@ -5,19 +5,14 @@
 
 Environment::Environment(int row, int col) : m_(row), n_(col) {
   slots_.resize(m_ * n_);
-  /* for (int i = 1; i <= row; i++) {
-    for (int j = 1; j <= row; j++) {
-      Slot aux(i, j);
-      slots_.push_back(aux);
-    }
-  } */
 }
+
 Environment::Environment(Environment& env) {
   m_ = env.m_;
   n_ = env.n_;
 
-  for (int i = 1; i <= m_; i++) {
-    for (int j = 1; j <= n_; j++) {
+  for (int i = 0; i < m_; i++) {
+    for (int j = 0; j < n_; j++) {
       slots_[pos(i, j)] = env.at(i, j);
     }
   }
@@ -30,7 +25,7 @@ Slot& Environment::at(int i, int j) {
 }
 
 int Environment::pos(int i, int j) const {
-  if (i >= 1 && j >= 1 && i <= m_ && j <= n_) {
+  if (i >= 0 && j >= 0 && i < m_ && j < n_) {
     return (i - 1) * n_ + j - 1;
   } else {
     return -1;
@@ -38,8 +33,8 @@ int Environment::pos(int i, int j) const {
 }
 
 int Environment::set(int i, int j, slot_t type) {
-  if ((i >= 1 && i <= m_) && (j >= 1 && j <= n_)) {
-    slots_[pos(i, j)].s_change(type);
+  if ((i >= 0 && i < m_) && (j >= 0 && j < n_)) {
+    at(i, j).s_change(type);
     return 0;
   } else {
     return 1;
@@ -48,21 +43,34 @@ int Environment::set(int i, int j, slot_t type) {
 
 int Environment::set_obs(int i, int j) { return set(i, j, O); }
 int Environment::set_goal(int i, int j) { return set(i, j, G); }
-int Environment::set_car(int i, int j) { return set(i, j, C); }
+int Environment::set_car(int i, int j) {
+  if ((i >= 0 && i < m_) && (j >= 0 && j < n_)) {
+    at(i, j).s_change(C);
+    at(i, j).get_car().pos(i, j);
+    return 0;
+  } else {
+    return 1;
+  }
+}
 
 void Environment::clear_obs() {
-  for (int i = 1; i <= m_; i++) {
-    for (int j = 1; j <= n_; j++) {
+  for (int i = 0; i < m_; i++) {
+    for (int j = 0; j < n_; j++) {
       delete_obs(i, j);
     }
   }
 }
 
 SmartCar& Environment::get_car() {
-  for (unsigned i = 0; i < slots_.size(); i++)
-    if (slots_[i].s_type() == C) return slots_[i].get_car();
+  for (int i = 0; i < m_; i++) {
+    for (int j = 0; j < n_; j++) {
+      if (at(i, j).s_type() == C) {
+        std::cout << "Entra\n";
+        return at(i, j).get_car();
+      }
+    }
+  }
 }
-
 void Environment::random_obs(float ratio) {
   clear_obs();
   srand(time(NULL));
@@ -79,8 +87,8 @@ void Environment::random_obs(float ratio) {
 void Environment::move_car(cardinal x, int steps, Environment& env) {
   std::vector<int> current_pos = get_car().pos();
   std::cout << current_pos[0] << current_pos[1] << "\n";
-  get_car().report_env(std::cout);
   get_car().check_environment(env);
+  /*
   switch (x) {
     case N:
       if (get_car().sensor(N) == false) {
@@ -113,9 +121,7 @@ void Environment::move_car(cardinal x, int steps, Environment& env) {
     default:
       break;
   }
-
-  current_pos = get_car().pos();
-  std::cout << current_pos[0] << current_pos[1] << "\n";
+  */
 }
 
 std::ostream& operator<<(std::ostream& os, Environment& obj) {
@@ -123,12 +129,12 @@ std::ostream& operator<<(std::ostream& os, Environment& obj) {
   for (int i = 0; i < obj.n_; i++) os << "─";
   os << "┐\n";
 
-  for (int i = 1; i <= obj.m_; i++) {
+  for (int i = 0; i < obj.m_; i++) {
     os << "│";
-    for (int j = 1; j <= obj.n_; j++) {
+    for (int j = 0; j < obj.n_; j++) {
       os << obj.at(i, j);
     }
-    os << "│" << i << "\n";
+    os << "│" << i + 1 << "\n";
   }
 
   os << "└";
