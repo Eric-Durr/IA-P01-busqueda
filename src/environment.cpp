@@ -4,10 +4,7 @@
 #include <iostream>
 
 Environment::Environment(int row, int col) : m_(row), n_(col) {
-  for (unsigned i = 0; i < m_ * n_; i++) {
-    Slot aux;
-    slots_.push_back(aux);
-  }
+  slots_.resize(m_ * n_);
 }
 
 Environment::Environment(Environment& env) {
@@ -35,20 +32,20 @@ int Environment::pos(int i, int j) const {
   }
 }
 
-int Environment::set(int i, int j, int type) {
+int Environment::set(int i, int j, slot_t type) {
   if ((i >= 0 && i < m_) && (j >= 0 && j < n_)) {
-    at(i, j).s_type(type);
+    at(i, j).s_change(type);
     return 0;
   } else {
     return 1;
   }
 }
 
-int Environment::set_obs(int i, int j) { return set(i, j, 1); }
-int Environment::set_goal(int i, int j) { return set(i, j, 3); }
+int Environment::set_obs(int i, int j) { return set(i, j, O); }
+int Environment::set_goal(int i, int j) { return set(i, j, G); }
 int Environment::set_car(int i, int j) {
   if ((i >= 0 && i < m_) && (j >= 0 && j < n_)) {
-    at(i, j).s_type(2);
+    at(i, j).s_change(C);
     at(i, j).get_car().pos(i, j);
     return 0;
   } else {
@@ -57,8 +54,10 @@ int Environment::set_car(int i, int j) {
 }
 
 void Environment::clear_obs() {
-  for (int i = 0; i < slots_.size(); i++) {
-    slots_[i].s_type(V);
+  for (int i = 0; i < m_; i++) {
+    for (int j = 0; j < n_; j++) {
+      at(i, j).s_change(V);
+    }
   }
 }
 
@@ -66,7 +65,6 @@ SmartCar& Environment::get_car() {
   for (int i = 0; i < m_; i++) {
     for (int j = 0; j < n_; j++) {
       if (at(i, j).s_type() == C) {
-        std::cout << "Entra\n";
         return at(i, j).get_car();
       }
     }
@@ -85,11 +83,9 @@ void Environment::random_obs(float ratio) {
   }
 }
 
-void Environment::move_car(cardinal x, int steps, Environment& env) {
+void Environment::move_car(cardinal x, int steps) {
   std::vector<int> current_pos = get_car().pos();
-  std::cout << current_pos[0] << current_pos[1] << "\n";
-  get_car().check_environment(env);
-  /*
+  get_car().check_environment(*this);
   switch (x) {
     case N:
       if (get_car().sensor(N) == false) {
@@ -122,7 +118,6 @@ void Environment::move_car(cardinal x, int steps, Environment& env) {
     default:
       break;
   }
-  */
 }
 
 std::ostream& operator<<(std::ostream& os, Environment& obj) {

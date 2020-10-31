@@ -15,7 +15,7 @@ enum slot_t { V, O, C, G };
 class Slot {
  private:
   int loc_i_, loc_j_;
-  int obstacle_;
+  slot_t obstacle_;
   SmartCar car_;
 
  public:
@@ -25,8 +25,9 @@ class Slot {
 
   bool is_obs() { return obstacle_ == O; }
   void set_obs() { obstacle_ = O; }  // Pone obstaculo a 1
-  int& s_type() { return obstacle_; }
-  int& s_type(int op) { obstacle_ = op; }
+  slot_t& s_type() { return obstacle_; }
+  slot_t& s_type(slot_t op) { obstacle_ = op; }
+  void s_change(slot_t op);
 
   SmartCar& get_car() { return car_; }
 

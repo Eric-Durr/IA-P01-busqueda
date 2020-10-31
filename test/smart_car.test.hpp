@@ -24,5 +24,13 @@ SCENARIO("Creating the car") {
       }
       std::cout << ent1 << std::endl;
     }
+    WHEN("Car is mooved once to south") {
+      ent1.move_car(S, 1);
+      THEN("Position must change") {
+        std::vector<int> expected = {1, 0};
+        CHECK(ent1.get_car().pos() == expected);
+      }
+      std::cout << ent1 << std::endl;
+    }
   }
 }

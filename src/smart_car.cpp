@@ -28,16 +28,16 @@ std::vector<int> SmartCar::pos() { return std::vector<int>{loc_i_, loc_j_}; }
 void SmartCar::move(cardinal x, int steps) {
   switch (x) {
     case N:
-      if (sensor(N) == false) dec_i(steps);
+      dec_i(steps);
       break;
     case S:
-      if (sensor(S) == false) inc_i(steps);
+      inc_i(steps);
       break;
     case E:
-      if (sensor(E) == false) inc_j(steps);
+      inc_j(steps);
       break;
     case W:
-      if (sensor(W) == false) dec_j(steps);
+      dec_j(steps);
       break;
     default:
       break;

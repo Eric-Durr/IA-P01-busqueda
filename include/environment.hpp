@@ -33,18 +33,18 @@ class Environment {
   int set_car(int i, int j);
 
   void delete_obs(int i, int j) {
-    slots_[pos(i, j)].s_type(0);
+    slots_[pos(i, j)].s_type(V);
   }                  // Elimina una casilla determinada
   void clear_obs();  // Limpia el entorno
 
   void random_obs(float ratio);  // Genarador de obstaculos
 
-  void move_car(cardinal x, int steps, Environment& env);
+  void move_car(cardinal x, int steps);
 
   friend std::ostream& operator<<(std::ostream& os, Environment& obj);
 
  private:
-  int set(int i, int j, int type);  // Cambia a un tipo concreto de elemento
+  int set(int i, int j, slot_t type);  // Cambia a un tipo concreto de elemento
 };
 
 #endif
