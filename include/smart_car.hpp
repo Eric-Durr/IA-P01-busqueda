@@ -6,6 +6,8 @@
 #include <vector>
 
 enum cardinal { N, W, S, E };
+const short i_d[] = {-1, 0, 1, 0};
+const short j_d[] = {0, 1, 0, -1};
 
 class Environment;
 class SmartCar {

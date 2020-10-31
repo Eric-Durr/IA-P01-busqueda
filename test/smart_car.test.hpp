@@ -6,11 +6,12 @@ SCENARIO("Creating the car") {
   GIVEN("A car") {
     SmartCar car1;
     Environment ent1(6, 6);
-    ent1.set_car(1, 1);
-    car1.check_environment(ent1);
+    ent1.clear_obs();
+    ent1.set_car(0, 0);
     WHEN("Environmet is checked") {
+      car1.check_environment(ent1);
       THEN("Coordinates must acord to top left") {
-        std::vector<int> expected = {1, 1};
+        std::vector<int> expected = {0, 0};
         CHECK(car1.pos() == expected);
       }
       THEN("Sensor must be right") {
@@ -21,6 +22,7 @@ SCENARIO("Creating the car") {
         CHECK(car1.sensor(S) == 0);
         CHECK(car1.sensor(E) == 0);
       }
+      std::cout << ent1 << std::endl;
     }
   }
 }

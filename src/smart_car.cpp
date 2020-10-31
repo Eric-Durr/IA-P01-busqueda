@@ -3,7 +3,9 @@
 #include "../include/environment.hpp"
 
 SmartCar::SmartCar(int loc_i, int loc_j) : loc_i_(loc_i), loc_j_(loc_j) {
-  sensor_.resize(4);
+  for (int i = 0; i < 4; i++) {
+    sensor_.push_back(false);
+  }
 }
 
 SmartCar::SmartCar(const SmartCar& car) {
@@ -57,26 +59,25 @@ std::ostream& SmartCar::report_env(std::ostream& os) {
 
 void SmartCar::check_environment(Environment& env) {
   if (env.pos(loc_i_ - 1, loc_j_) == -1) {
-    std::cout << sensor_.size() << std::endl;
+    sensor_[N] = true;
   } else {
-    // sensor_[N] = env.at(loc_i_ - 1, loc_j_).is_obs();
+    sensor_[N] = env.at(loc_i_ - 1, loc_j_).is_obs();
   }
-  /*
-    if (env.pos(loc_i_ + 1, loc_j_) == -1) {
-      sensor_[S] = true;
-    } else {
-      sensor_[S] = env.at(loc_i_ + 1, loc_j_).is_obs();
-    }
+  if (env.pos(loc_i_ + 1, loc_j_) == -1) {
+    sensor_[S] = true;
+  } else {
+    sensor_[S] = env.at(loc_i_ + 1, loc_j_).is_obs();
+  }
 
-    if (env.pos(loc_i_, loc_j_ + 1) == -1) {
-      sensor_[E] = true;
-    } else {
-      sensor_[E] = env.at(loc_i_, loc_j_ + 1).is_obs();
-    }
+  if (env.pos(loc_i_, loc_j_ + 1) == -1) {
+    sensor_[E] = true;
+  } else {
+    sensor_[E] = env.at(loc_i_, loc_j_ + 1).is_obs();
+  }
 
-    if (env.pos(loc_i_, loc_j_ - 1) == -1) {
-      sensor_[W] = true;
-    } else {
-      sensor_[W] = env.at(loc_i_, loc_j_ - 1).is_obs();
-    }*/
+  if (env.pos(loc_i_, loc_j_ - 1) == -1) {
+    sensor_[W] = true;
+  } else {
+    sensor_[W] = env.at(loc_i_, loc_j_ - 1).is_obs();
+  }
 }

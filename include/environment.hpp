@@ -8,6 +8,11 @@
 
 #include "slot.hpp"
 
+#define U_PATH_CHR "↑"
+#define R_PATH_CHR "→"
+#define D_PATH_CHR "↓"
+#define L_PATH_CHR "←"
+
 class Environment {
  private:
   int m_, n_;
@@ -28,7 +33,7 @@ class Environment {
   int set_car(int i, int j);
 
   void delete_obs(int i, int j) {
-    slots_[pos(i, j)].s_change(V);
+    slots_[pos(i, j)].s_type(0);
   }                  // Elimina una casilla determinada
   void clear_obs();  // Limpia el entorno
 
@@ -39,7 +44,7 @@ class Environment {
   friend std::ostream& operator<<(std::ostream& os, Environment& obj);
 
  private:
-  int set(int i, int j, slot_t type);  // Cambia a un tipo concreto de elemento
+  int set(int i, int j, int type);  // Cambia a un tipo concreto de elemento
 };
 
 #endif

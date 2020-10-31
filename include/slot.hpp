@@ -5,6 +5,11 @@
 
 #include "smart_car.hpp"
 
+#define OBST_CHR "■"
+#define VOID_CHR " "
+#define CAR__CHR "©"
+#define GOAL_CHR "X"
+
 enum slot_t { V, O, C, G };
 
 class Slot {
@@ -20,8 +25,8 @@ class Slot {
 
   bool is_obs() { return obstacle_ == O; }
   void set_obs() { obstacle_ = O; }  // Pone obstaculo a 1
-  int s_type() { return obstacle_; }
-  int s_change(slot_t op);
+  int& s_type() { return obstacle_; }
+  int& s_type(int op) { obstacle_ = op; }
 
   SmartCar& get_car() { return car_; }
 

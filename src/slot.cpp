@@ -1,60 +1,23 @@
 #include "../include/slot.hpp"
 
-Slot::Slot(int loc_i, int loc_j, slot_t op) : loc_i_(loc_i), loc_j_(loc_j) {
-  car_.pos(loc_i, loc_j);
-  switch (op) {
-    case V:
-      obstacle_ = 0;
-      break;
-    case O:
-      obstacle_ = 1;
-      break;
-    case C:
-      obstacle_ = 2;
-      break;
-    case G:
-      obstacle_ = 3;
-      break;
-    default:
-      obstacle_ = 0;
-      break;
-  }
-}
-
-int Slot::s_change(slot_t op = O) {
-  switch (op) {
-    case V:
-      obstacle_ = 0;
-      break;
-    case O:
-      obstacle_ = 1;
-      break;
-    case C:
-      obstacle_ = 2;
-      break;
-    case G:
-      obstacle_ = 3;
-      break;
-    default:
-      return 1;
-      break;
-  }
-  return 0;
+Slot::Slot(int loc_i, int loc_j, slot_t op)
+    : loc_i_(loc_i), loc_j_(loc_j), obstacle_(op) {
+  if (op == C) car_.pos(loc_i, loc_j);
 }
 
 std::ostream& operator<<(std::ostream& os, const Slot& obj) {
   switch (obj.obstacle_) {
-    case V:
-      os << " ";
+    case 0:
+      os << VOID_CHR;
       break;
-    case O:
-      os << "■";
+    case 1:
+      os << OBST_CHR;
       break;
-    case C:
-      os << "©";
+    case 2:
+      os << CAR__CHR;
       break;
-    case G:
-      os << "x";
+    case 3:
+      os << GOAL_CHR;
       break;
     default:
       os << "?";

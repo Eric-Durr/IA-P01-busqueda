@@ -13,7 +13,7 @@ SCENARIO("Creation of the slot") {
       }
     }
     AND_WHEN("Slot is changed ") {
-      default_slot.s_change(O);
+      default_slot.s_type(1);
       THEN("type is 1") {
         REQUIRE(default_slot.s_type() == 1);
         CHECK(default_slot.s_type() != 0);
@@ -21,7 +21,7 @@ SCENARIO("Creation of the slot") {
       }
     }
     AND_WHEN("Slot is changed ") {
-      default_slot.s_change(C);
+      default_slot.s_type(2);
       THEN("type is 2") {
         REQUIRE(default_slot.s_type() == 2);
         CHECK(default_slot.s_type() != 0);

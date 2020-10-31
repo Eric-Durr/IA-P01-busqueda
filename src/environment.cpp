@@ -4,7 +4,10 @@
 #include <iostream>
 
 Environment::Environment(int row, int col) : m_(row), n_(col) {
-  slots_.resize(m_ * n_);
+  for (unsigned i = 0; i < m_ * n_; i++) {
+    Slot aux;
+    slots_.push_back(aux);
+  }
 }
 
 Environment::Environment(Environment& env) {
@@ -26,26 +29,26 @@ Slot& Environment::at(int i, int j) {
 
 int Environment::pos(int i, int j) const {
   if (i >= 0 && j >= 0 && i < m_ && j < n_) {
-    return (i - 1) * n_ + j - 1;
+    return (i)*n_ + j;
   } else {
     return -1;
   }
 }
 
-int Environment::set(int i, int j, slot_t type) {
+int Environment::set(int i, int j, int type) {
   if ((i >= 0 && i < m_) && (j >= 0 && j < n_)) {
-    at(i, j).s_change(type);
+    at(i, j).s_type(type);
     return 0;
   } else {
     return 1;
   }
 }
 
-int Environment::set_obs(int i, int j) { return set(i, j, O); }
-int Environment::set_goal(int i, int j) { return set(i, j, G); }
+int Environment::set_obs(int i, int j) { return set(i, j, 1); }
+int Environment::set_goal(int i, int j) { return set(i, j, 3); }
 int Environment::set_car(int i, int j) {
   if ((i >= 0 && i < m_) && (j >= 0 && j < n_)) {
-    at(i, j).s_change(C);
+    at(i, j).s_type(2);
     at(i, j).get_car().pos(i, j);
     return 0;
   } else {
@@ -54,10 +57,8 @@ int Environment::set_car(int i, int j) {
 }
 
 void Environment::clear_obs() {
-  for (int i = 0; i < m_; i++) {
-    for (int j = 0; j < n_; j++) {
-      delete_obs(i, j);
-    }
+  for (int i = 0; i < slots_.size(); i++) {
+    slots_[i].s_type(V);
   }
 }
 
