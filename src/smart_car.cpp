@@ -25,25 +25,6 @@ void SmartCar::pos(int i, int j) {
 }
 std::vector<int> SmartCar::pos() { return std::vector<int>{loc_i_, loc_j_}; }
 
-void SmartCar::move(cardinal x, int steps) {
-  switch (x) {
-    case N:
-      dec_i(steps);
-      break;
-    case S:
-      inc_i(steps);
-      break;
-    case E:
-      inc_j(steps);
-      break;
-    case W:
-      dec_j(steps);
-      break;
-    default:
-      break;
-  }
-}
-
 std::ostream& SmartCar::report_env(std::ostream& os) {
   os << "N: ";
   sensor_[N] ? os << "Obstacle" : os << "Free";

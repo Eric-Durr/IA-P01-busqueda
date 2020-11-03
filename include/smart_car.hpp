@@ -25,16 +25,9 @@ class SmartCar {
 
   std::vector<bool>& sensor(void) { return sensor_; }
   bool sensor(cardinal x) { return sensor_[x]; }
-  void move(cardinal x, int steps);
   std::ostream& report_env(std::ostream& os);
 
   void check_environment(Environment& env);
-
- private:
-  void inc_i(int num) { loc_i_ += num; }
-  void inc_j(int num) { loc_j_ += num; }
-  void dec_i(int num) { loc_i_ -= num; }
-  void dec_j(int num) { loc_j_ -= num; }
 };
 
 #endif

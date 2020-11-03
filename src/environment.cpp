@@ -91,28 +91,29 @@ void Environment::move_car(cardinal x, int steps) {
       if (get_car().sensor(N) == false) {
         at(current_pos[0], current_pos[1]).s_change(V);
         at(current_pos[0] - steps, current_pos[1]).s_change(C);
-        get_car().move(N, steps);
+        get_car().pos(current_pos[0] - steps, current_pos[1]);
       }
       break;
     case S:
       if (get_car().sensor(S) == false) {
         at(current_pos[0], current_pos[1]).s_change(V);
         at(current_pos[0] + steps, current_pos[1]).s_change(C);
-        get_car().move(S, steps);
+        get_car().pos(current_pos[0] + steps, current_pos[1]);
       }
       break;
     case E:
       if (get_car().sensor(E) == false) {
         at(current_pos[0], current_pos[1]).s_change(V);
         at(current_pos[0], current_pos[1] + steps).s_change(C);
-        get_car().move(E, steps);
+        get_car().pos(current_pos[0], current_pos[1] + steps);
       }
       break;
     case W:
       if (get_car().sensor(W) == false) {
         at(current_pos[0], current_pos[1]).s_change(V);
         at(current_pos[0], current_pos[1] - steps).s_change(C);
-        get_car().move(W, steps);
+
+        get_car().pos(current_pos[0], current_pos[1] - steps);
       }
       break;
     default:
