@@ -43,9 +43,9 @@ int main(void) {
       std::cout << "\nEntorno y visualiacion de la trayectoria:\n";
       std::cout << tab << std::endl;
 
-      tab.move_car(S, 3, tab);
-      /*tab.move_car(N, 1, tab);
-      tab.move_car(E, 1, tab);*/
+      tab.move_car(S, 3);
+      tab.move_car(N, 1);
+      // tab.move_car(E, 1, tab);
 
       std::cout << "\nEntorno y visualiacion de la trayectoria:\n";
       std::cout << tab << std::endl;
