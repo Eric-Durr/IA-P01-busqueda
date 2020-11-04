@@ -74,17 +74,7 @@ SmartCar& Environment::get_car() {
     }
   }
 }
-/*
-Slot& Environment::get_goal() {
-  for (int i = 0; i < m_; i++) {
-    for (int j = 0; j < n_; j++) {
-      if (at(i, j).s_type() == G) {
-        return at(i, j);
-      }
-    }
-  }
-}
-*/
+
 void Environment::random_obs(float ratio) {
   clear_obs();
   srand(time(NULL));
@@ -137,18 +127,19 @@ void Environment::move_car(cardinal x, int steps) {
 }
 
 int Environment::lineal_d() {
-  std::cout << "meta j:" << g_j_ << "\n";                 // 9
-  std::cout << "coche j:" << get_car().pos()[1] << "\n";  // 0
-  std::cout << "meta i:" << g_i_ << "\n";                 // 9
-  std::cout << "coche i:" << get_car().pos()[0] << "\n";  // 0
-  std::cout << "resultado: "
-            << sqrt(pow(g_j_ - get_car().pos()[1], 2) +
-                    pow(g_i_ - get_car().pos()[0], 2))
-            << "\n";
-
+  /* std::cout << "meta j:" << g_j_ << "\n";                 // 9
+   std::cout << "coche j:" << get_car().pos()[1] << "\n";  // 0
+   std::cout << "meta i:" << g_i_ << "\n";                 // 9
+   std::cout << "coche i:" << get_car().pos()[0] << "\n";  // 0
+   std::cout << "resultado: "
+             << sqrt(pow(g_j_ - get_car().pos()[1], 2) +
+                     pow(g_i_ - get_car().pos()[0], 2))
+             << "\n";
+ */
   return sqrt(pow(g_j_ - get_car().pos()[1], 2) +
               pow(g_i_ - get_car().pos()[0], 2));
 }
+
 std::ostream& operator<<(std::ostream& os, Environment& obj) {
   os << "┌";
   for (int i = 0; i < obj.n_; i++) os << "─";

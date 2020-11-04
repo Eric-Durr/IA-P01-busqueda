@@ -2,7 +2,6 @@
 #include <iostream>
 
 #include "../include/environment.hpp"
-#include "../include/obstacle.hpp"
 #include "../include/slot.hpp"
 #include "../include/smart_car.hpp"
 
