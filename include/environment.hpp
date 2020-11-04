@@ -29,7 +29,6 @@ class Environment {
   Slot& at(int i, int j);  // Checked
   int pos(int i, int j) const;
   SmartCar& get_car();
-  // Slot& get_goal();
 
   int set_obs(int i, int j);   // Cambia a Obstaculo #checked
   int set_goal(int i, int j);  // Cambia a meta #checked
@@ -44,7 +43,8 @@ class Environment {
 
   void move_car(cardinal x, int steps);
 
-  int lineal_d(void);
+  int lineal_d(void);     // Funcion heuristica lineal
+  int manhattan_d(void);  // Funcion heuristica manhattan
 
   friend std::ostream& operator<<(std::ostream& os, Environment& obj);
 

@@ -126,7 +126,7 @@ void Environment::move_car(cardinal x, int steps) {
   }
 }
 
-int Environment::lineal_d() {
+int Environment::lineal_d() {  // Funcion Euclidea
   /* std::cout << "meta j:" << g_j_ << "\n";                 // 9
    std::cout << "coche j:" << get_car().pos()[1] << "\n";  // 0
    std::cout << "meta i:" << g_i_ << "\n";                 // 9
@@ -138,6 +138,10 @@ int Environment::lineal_d() {
  */
   return sqrt(pow(g_j_ - get_car().pos()[1], 2) +
               pow(g_i_ - get_car().pos()[0], 2));
+}
+
+int Environment::manhattan_d() {
+  return (abs(g_i_ - get_car().pos()[0]) + abs(g_j_ - get_car().pos()[1]));
 }
 
 std::ostream& operator<<(std::ostream& os, Environment& obj) {
