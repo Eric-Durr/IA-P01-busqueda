@@ -13,6 +13,7 @@ SCENARIO("Creando el objeto de busqueda") {
     WHEN("Comprobamos atributos") {
       THEN("Lista abierta y lista cerrada vacia") {
         CHECK(a_star.o_list_empty() == true);
+        CHECK(a_star.o_list_size() == 0);
         CHECK(a_star.c_list_empty() == true);
       }
       AND_THEN("meta, coche, start y funciones h inicializados") {
@@ -27,5 +28,7 @@ SCENARIO("Creando el objeto de busqueda") {
         CHECK(a_star.manhattan_value() == 18);
       }
     }
+
+    WHEN("") {}
   }
 }

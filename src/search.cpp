@@ -14,3 +14,10 @@ Search::Search(Search& other)
     close_.push_back(slot);
   }
 }
+
+void Search::a_star_algorithm(void) {
+  start_.set_f(0);
+  open_.push_back(start_);
+  while (o_list_empty() == false) {
+    }
+}

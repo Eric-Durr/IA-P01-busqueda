@@ -23,6 +23,7 @@ class Search {
   bool o_list_empty(void) { return open_.size() == 0; }
   bool c_list_empty(void) { return close_.size() == 0; }
 
+  int o_list_size(void) { return open_.size(); }
   std::vector<int> get_start_pos(void) {
     return std::vector<int>{start_.pos_i(), start_.pos_j()};
   }
@@ -32,6 +33,8 @@ class Search {
   }
   int linear_value(void) { return env_.lineal_d(); }
   int manhattan_value(void) { return env_.manhattan_d(); }
+
+  void a_star_algorithm(void);
 };
 
 #endif  // INCLUDE_SEARCH_HPP_
