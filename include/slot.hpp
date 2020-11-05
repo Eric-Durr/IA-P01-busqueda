@@ -30,6 +30,8 @@ class Slot {
   void s_change(slot_t op);
   int pos_i(void) const { return loc_i_; }
   int pos_j(void) const { return loc_j_; }
+  void pos_i(int i) { loc_i_ = i; }
+  void pos_j(int j) { loc_j_ = j; }
 
   SmartCar& get_car() { return car_; }
 

@@ -18,7 +18,6 @@ class Environment {
  private:
   int m_, n_;
   std::vector<Slot> slots_;
-  int g_i_, g_j_;
 
  public:
   Environment(int row = 0, int col = 0);
@@ -29,6 +28,7 @@ class Environment {
   Slot& at(int i, int j);  // Checked
   int pos(int i, int j) const;
   SmartCar& get_car();
+  Slot& get_goal();
 
   int set_obs(int i, int j);   // Cambia a Obstaculo #checked
   int set_goal(int i, int j);  // Cambia a meta #checked
