@@ -6,9 +6,10 @@ SCENARIO("Creando el objeto de busqueda") {
   GIVEN(
       "Entorno de 10 * 10, un coche en la posicion por defecto, y una meta en "
       "la 9*9 ") {
-    Environment env(10, 10);
+    Environment env(3, 3);
     env.set_car(0, 0);
-    env.set_goal(9, 9);
+    env.set_goal(2, 2);
+
     Search a_star(env);
     WHEN("Comprobamos atributos") {
       THEN("Lista abierta y lista cerrada vacia") {
@@ -28,7 +29,10 @@ SCENARIO("Creando el objeto de busqueda") {
         CHECK(a_star.manhattan_value() == 18);
       }
     }
+    AND_WHEN("Se lanza el algoritmo") {
+      a_star.a_star_algorithm();
 
-    WHEN("") {}
+      std::cout << env << std::endl;
+    }
   }
 }

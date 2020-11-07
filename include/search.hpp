@@ -8,6 +8,8 @@
 
 #include "environment.hpp"
 
+const int MOVE_VAL = 1;
+
 class Search {
  private:
   std::vector<Slot> open_;
@@ -35,6 +37,14 @@ class Search {
   int manhattan_value(void) { return env_.manhattan_d(); }
 
   void a_star_algorithm(void);
+
+  void trace_path(Slot end);
+
+ private:
+  std::vector<Slot> get_successors(const Slot& q);
+  bool is_in_open(const Slot& other);
+  bool lower_in_open(const Slot& other);
+  bool is_in_close(const Slot& other);
 };
 
 #endif  // INCLUDE_SEARCH_HPP_

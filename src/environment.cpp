@@ -26,9 +26,12 @@ Environment::Environment(Environment& env) {
 }
 
 Slot& Environment::at(int i, int j) {
-  // assert(i >= 1 && j >= 1 && i <= m_ && j <= n_);
-
+  /* if (i >= 0 && j >= 0 && i < m_ && j < n_) { */
   return slots_[pos(i, j)];
+  /* } else {
+    Slot obs(-1, -1, O);
+    return obs;
+  } */
 }
 
 int Environment::pos(int i, int j) const {
@@ -138,7 +141,7 @@ void Environment::move_car(cardinal x, int steps) {
   }
 }
 
-int Environment::lineal_d() {  // Funcion Euclidea
+int Environment::lineal_d() {
   return sqrt(pow(get_goal().pos_j() - get_car().pos()[1], 2) +
               pow(get_goal().pos_i() - get_car().pos()[0], 2));
 }
@@ -148,9 +151,28 @@ int Environment::manhattan_d() {
           abs(get_goal().pos_j() - get_car().pos()[1]));
 }
 
+int Environment::lineal_d(const Slot& begin) {
+  return sqrt(pow(get_goal().pos_j() - begin.pos_j(), 2) +
+              pow(get_goal().pos_i() - begin.pos_i(), 2));
+}
+
+int Environment::manhattan_d(const Slot& begin) {
+  return (abs(get_goal().pos_i() - begin.pos_i()) +
+          abs(get_goal().pos_j() - begin.pos_j()));
+}
+
+int Environment::lineal_d(const Slot& begin, const Slot& end) {
+  return sqrt(pow(end.pos_j() - begin.pos_j(), 2) +
+              pow(end.pos_i() - begin.pos_i(), 2));
+}
+
+int Environment::manhattan_d(const Slot& begin, const Slot& end) {
+  return (abs(end.pos_i() - begin.pos_i()) + abs(end.pos_j() - begin.pos_j()));
+}
+
 std::ostream& operator<<(std::ostream& os, Environment& obj) {
   os << "┌";
-  for (int i = 0; i < obj.n_; i++) os << "─";
+  for (int i = 0; i < obj.n_; i++) os << "───";
   os << "┐\n";
 
   for (int i = 0; i < obj.m_; i++) {
@@ -162,7 +184,7 @@ std::ostream& operator<<(std::ostream& os, Environment& obj) {
   }
 
   os << "└";
-  for (int i = 0; i < obj.n_; i++) os << "─";
+  for (int i = 0; i < obj.n_; i++) os << "───";
   os << "┘\n\n";
 
   return os;

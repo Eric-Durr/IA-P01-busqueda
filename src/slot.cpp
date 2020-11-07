@@ -1,7 +1,12 @@
 #include "../include/slot.hpp"
 
 Slot::Slot(int loc_i, int loc_j, slot_t op)
-    : loc_i_(loc_i), loc_j_(loc_j), obstacle_(op) {
+    : loc_i_(loc_i),
+      loc_j_(loc_j),
+      obstacle_(op),
+      parent_i_(-1),
+      parent_j_(-1),
+      g_(0) {
   if (op == C) car_.pos(loc_i, loc_j);
 }
 
@@ -26,4 +31,9 @@ std::ostream& operator<<(std::ostream& os, const Slot& obj) {
       break;
   }
   return os;
+}
+
+bool Slot::operator==(const Slot& obj) {
+  return (this->f_ == obj.f_ && this->loc_i_ == obj.loc_i_ &&
+          this->loc_j_ == obj.loc_j_);
 }

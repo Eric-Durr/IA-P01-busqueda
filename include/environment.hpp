@@ -43,8 +43,19 @@ class Environment {
 
   void move_car(cardinal x, int steps);
 
-  int lineal_d(void);     // Funcion heuristica lineal
-  int manhattan_d(void);  // Funcion heuristica manhattan
+  int lineal_d(void);  // Funcion heuristica lineal por defecto (coche - meta)
+  int manhattan_d(
+      void);  // Funcion heuristica manhattan por defecto (coche - meta)
+
+  int lineal_d(const Slot& begin);     // Funcion heuristica lineal por defecto
+                                       // (Slot - meta)
+  int manhattan_d(const Slot& begin);  // Funcion heuristica manhattan por
+                                       // defecto (Slot - meta)
+  int lineal_d(const Slot& begin,
+               const Slot& end);  // Funcion heuristica lineal (Slot -Slot)
+  int manhattan_d(
+      const Slot& begin,
+      const Slot& end);  // Funcion heuristica manhattan (Slot -Slot)
 
   friend std::ostream& operator<<(std::ostream& os, Environment& obj);
 
