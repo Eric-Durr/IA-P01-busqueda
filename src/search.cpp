@@ -85,9 +85,12 @@ void Search::a_star_algorithm(void) {
 void Search::trace_path(Slot temp) {
   std::vector<Slot> path;
   while (temp.parent_i() != -1 && temp.parent_j() != -1) {
-    temp = env_.at(temp.parent_i(), temp.parent_j());
+    std::cout << "(" << temp.pos_i() << "," << temp.pos_j() << ")->";
     path.push_back(temp);
+    temp = env_.at(temp.parent_i(), temp.parent_j());
   }
+
+  std::cout << "\n";
   for (int i = path.size() - 1; i >= 0; i--) {
     std::cout << "(" << path[i].pos_i() << "," << path[i].pos_j() << ")->";
   }
