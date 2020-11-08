@@ -1,17 +1,35 @@
 #include "../include/search.hpp"
 
-Search::Search(Environment env) : goal_(env.get_goal()), env_(env) {
+Search::Search(Environment env, int opcion)
+    : goal_(env.get_goal()), opcion_(opcion), env_(env) {
   start_.pos_i(env_.get_car().pos()[0]);
   start_.pos_j(env_.get_car().pos()[1]);
 }
 
 Search::Search(Search& other)
-    : goal_(other.goal_), start_(other.start_), env_(other.env_) {
+    : goal_(other.goal_),
+      start_(other.start_),
+      opcion_(other.opcion_),
+      env_(other.env_) {
   for (auto slot : other.open_) {
     open_.push_back(slot);
   }
   for (auto slot : other.closed_) {
     closed_.push_back(slot);
+  }
+}
+
+double Search::heuristic_function(const Slot& valor) {
+  switch (opcion_) {
+    case 1:
+      return env_.lineal_d(valor);
+      break;
+
+    case 2:
+      return env_.manhattan_d(valor);
+      break;
+    default:
+      break;
   }
 }
 
@@ -36,7 +54,7 @@ void Search::a_star_algorithm(void) {
     /*  ---  */
 
     /* Measure values */
-    int new_g, new_h, new_f;
+    double new_g, new_h, new_f;
     /*  ---  */
 
     /* For each successor: */
@@ -44,8 +62,8 @@ void Search::a_star_algorithm(void) {
       if (var.get_obs() == G) {
         env_.at(var.pos_i(), var.pos_j()).set_parents(min.pos_i(), min.pos_j());
         var.set_parents(min.pos_i(), min.pos_j());
-        var.set_g(min.get_g() + MOVE_VAL);           /* 2nd arg is in doubt */
-        var.set_f(var.get_g() + env_.lineal_d(var)); /* blocked h */
+        var.set_g(min.get_g() + MOVE_VAL); /* 2nd arg is in doubt */
+        var.set_f(var.get_g() + heuristic_function(var)); /* blocked h */
         std::cout << "Goal slot found\n";
         std::cout << "(" << var.pos_i() << "," << var.pos_i() << ")\n";
 
@@ -55,7 +73,7 @@ void Search::a_star_algorithm(void) {
         /* If it's not yet at close list and it´s not an obstacle */
       } else if ((is_in_close(var) == false) && (var.is_obs() == false)) {
         new_g = min.get_g() + MOVE_VAL;
-        new_h = env_.lineal_d(var);
+        new_h = heuristic_function(var);
         new_f = new_g + new_h;
 
         /* If it's not at open list or it is but with lower f, insert it */
@@ -66,19 +84,8 @@ void Search::a_star_algorithm(void) {
           var.set_g(new_g);
           var.set_f(new_f);
           if ((is_in_open(var) == true) && (lower_in_open(var) == false)) {
-            std::cout << "Updating in open a new step\n";
-            std::cout << "(" << var.pos_i() << "," << var.pos_j() << ")\n";
-            std::cout << "G: " << var.get_g() << "\n";
-            std::cout << "H: " << env_.lineal_d(var) << "\n";
-            std::cout << "F: " << var.get_f() << "\n";
             update_open_val(var);
           } else {
-            std::cout << "Introducing to open a new step\n";
-            std::cout << "(" << var.pos_i() << "," << var.pos_j() << ")\n";
-            std::cout << "G: " << var.get_g() << "\n";
-            std::cout << "H: " << env_.lineal_d(var) << "\n";
-            std::cout << "F: " << var.get_f() << "\n";
-
             open_.push_back(var);
           }
         }
@@ -93,11 +100,10 @@ void Search::a_star_algorithm(void) {
 void Search::trace_path(Slot temp) {
   std::vector<Slot> path;
   while (temp.parent_i() != -1 && temp.parent_j() != -1) {
-    std::cout << "(" << temp.pos_i() << "," << temp.pos_j() << ")->";
     path.push_back(temp);
     temp = env_.at(temp.parent_i(), temp.parent_j());
   }
-
+  path.push_back(start_);
   std::cout << "\n";
   for (int i = path.size() - 1; i >= 0; i--) {
     std::cout << "(" << path[i].pos_i() << "," << path[i].pos_j() << ")->";

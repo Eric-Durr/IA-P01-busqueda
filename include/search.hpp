@@ -17,9 +17,10 @@ class Search {
   Slot start_, goal_;
   std::stack<Slot> path_;
   Environment env_;
+  int opcion_;
 
  public:
-  Search(Environment env);
+  Search(Environment env, int opcion = 1);
   Search(Search& other);
 
   bool o_list_empty(void) { return open_.size() == 0; }
@@ -39,6 +40,8 @@ class Search {
   void a_star_algorithm(void);
 
   void trace_path(Slot end);
+
+  double heuristic_function(const Slot& valor);
 
  private:
   std::vector<Slot> get_successors(const Slot& q);

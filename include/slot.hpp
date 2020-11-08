@@ -16,7 +16,7 @@ class Slot {
  private:
   int loc_i_, loc_j_;
   int parent_i_, parent_j_; /* path trace atributes */
-  int f_, g_;
+  double f_, g_;
   slot_t obstacle_;
   SmartCar car_;
 
@@ -29,10 +29,10 @@ class Slot {
   void set_obs() { obstacle_ = O; }  // Pone obstaculo a 1
   slot_t get_obs() const { return obstacle_; }
 
-  void set_f(int f) { f_ = f; }
-  void set_g(int g) { g_ = g; }
-  int get_f(void) const { return f_; }
-  int get_g(void) const { return g_; }
+  void set_f(double f) { f_ = f; }
+  void set_g(double g) { g_ = g; }
+  double get_f(void) const { return f_; }
+  double get_g(void) const { return g_; }
 
   slot_t& s_type() { return obstacle_; }
   slot_t& s_type(slot_t op) { obstacle_ = op; }
