@@ -171,6 +171,7 @@ double Environment::manhattan_d(const Slot& begin, const Slot& end) {
 }
 
 std::ostream& operator<<(std::ostream& os, Environment& obj) {
+  
   os << "┌";
   for (int i = 0; i < obj.n_; i++) os << "───";
   os << "┐\n";

@@ -36,6 +36,7 @@ double Search::heuristic_function(const Slot& valor) {
 void Search::a_star_algorithm(void) {
   start_.set_f(0);
   open_.push_back(start_);
+  bool found_goal = false;
 
   while (o_list_empty() == false) {
     /* Searching the Slot with least f on open list */
@@ -66,6 +67,7 @@ void Search::a_star_algorithm(void) {
         var.set_f(var.get_g() + heuristic_function(var)); /* blocked h */
         std::cout << "Goal slot found\n";
         trace_path(var);
+        found_goal = true;
         return;
 
         /* If it's not yet at close list and it´s not an obstacle */
@@ -92,7 +94,10 @@ void Search::a_star_algorithm(void) {
     /*  ---  */
   }
 
-  /* Controll with found dest */
+  if (found_goal == false) {
+    std::cout << "Failed to find the goal\n";
+  }
+  return;
 }
 
 void Search::trace_path(Slot temp) {
@@ -121,7 +126,20 @@ std::string Search::path_to_string(void) {
   std::cout << "\n";
 }
 
+std::ostream& operator<<(std::ostream& os, Search& object) {
+  os << " --- TRAZA DE MOVIMIENTO ---\n\n";
+  os << object.path_size() << "\n";
+  for (int i = object.path_size(); i >= 0; i--) {
+    object.env_.delete_obs(object.path_[i].parent_i(),
+                           object.path_[i].parent_j());
+    object.env_.set_car(object.path_[i].pos_i(), object.path_[i].pos_j());
+    os << object.env_ << std::endl;
+  }
+  return os;
+}
+
 /* Private methods */
+
 std::vector<Slot> Search::get_successors(const Slot& q) {
   Slot north = env_.pos(q.pos_i() - 1, q.pos_j()) != -1
                    ? env_.at(q.pos_i() - 1, q.pos_j())

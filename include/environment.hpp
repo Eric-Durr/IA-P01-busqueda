@@ -58,7 +58,7 @@ class Environment {
       const Slot& begin,
       const Slot& end);  // Funcion heuristica manhattan (Slot -Slot)
 
-  friend std::ostream& operator<<(std::ostream& os, Environment& obj);
+    friend std::ostream& operator<<(std::ostream& os, Environment& obj);
 
  private:
   int set(int i, int j, slot_t type);  // Cambia a un tipo concreto de elemento

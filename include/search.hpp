@@ -44,6 +44,10 @@ class Search {
 
   double heuristic_function(const Slot& valor);
 
+  int path_size(void) const { return path_.size(); }
+
+  friend std::ostream& operator<<(std::ostream& os, Search& object);
+
  private:
   std::vector<Slot> get_successors(const Slot& q);
   bool is_in_open(const Slot& other);
