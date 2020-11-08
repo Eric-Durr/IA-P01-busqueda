@@ -15,7 +15,7 @@ class Search {
   std::vector<Slot> open_;
   std::vector<Slot> closed_;
   Slot start_, goal_;
-  std::stack<Slot> path_;
+  std::vector<Slot> path_;
   Environment env_;
 
  public:
@@ -39,6 +39,7 @@ class Search {
   void a_star_algorithm(void);
 
   void trace_path(Slot end);
+  std::string path_to_string(void);
 
  private:
   std::vector<Slot> get_successors(const Slot& q);

@@ -47,8 +47,6 @@ void Search::a_star_algorithm(void) {
         var.set_g(min.get_g() + MOVE_VAL);           /* 2nd arg is in doubt */
         var.set_f(var.get_g() + env_.lineal_d(var)); /* blocked h */
         std::cout << "Goal slot found\n";
-        std::cout << "(" << var.pos_i() << "," << var.pos_i() << ")\n";
-
         trace_path(var);
         return;
 
@@ -66,19 +64,8 @@ void Search::a_star_algorithm(void) {
           var.set_g(new_g);
           var.set_f(new_f);
           if ((is_in_open(var) == true) && (lower_in_open(var) == false)) {
-            std::cout << "Updating in open a new step\n";
-            std::cout << "(" << var.pos_i() << "," << var.pos_j() << ")\n";
-            std::cout << "G: " << var.get_g() << "\n";
-            std::cout << "H: " << env_.lineal_d(var) << "\n";
-            std::cout << "F: " << var.get_f() << "\n";
             update_open_val(var);
           } else {
-            std::cout << "Introducing to open a new step\n";
-            std::cout << "(" << var.pos_i() << "," << var.pos_j() << ")\n";
-            std::cout << "G: " << var.get_g() << "\n";
-            std::cout << "H: " << env_.lineal_d(var) << "\n";
-            std::cout << "F: " << var.get_f() << "\n";
-
             open_.push_back(var);
           }
         }
@@ -91,16 +78,27 @@ void Search::a_star_algorithm(void) {
 }
 
 void Search::trace_path(Slot temp) {
-  std::vector<Slot> path;
   while (temp.parent_i() != -1 && temp.parent_j() != -1) {
-    std::cout << "(" << temp.pos_i() << "," << temp.pos_j() << ")->";
-    path.push_back(temp);
+    path_.push_back(temp);
     temp = env_.at(temp.parent_i(), temp.parent_j());
   }
-
+  path_.push_back(start_);
   std::cout << "\n";
-  for (int i = path.size() - 1; i >= 0; i--) {
-    std::cout << "(" << path[i].pos_i() << "," << path[i].pos_j() << ")->";
+  for (int i = path_.size() - 1; i >= 0; i--) {
+    std::cout << "(" << path_[i].pos_i() + 1 << "," << path_[i].pos_j() + 1
+              << ")->";
+  }
+  std::cout << "\n";
+}
+
+std::string Search::path_to_string(void) {
+  std::string path = "";
+  for (int i = path_.size() - 1; i >= 0; i--) {
+    path += "(";
+    path += std::to_string(path_[i].pos_i() + 1);
+    path += ",";
+    path += std::to_string(path_[i].pos_j() + 1);
+    path += ")->";
   }
   std::cout << "\n";
 }
