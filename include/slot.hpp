@@ -43,8 +43,8 @@ class Slot {
   void pos_i(int i) { loc_i_ = i; }
   void pos_j(int j) { loc_j_ = j; }
 
-  int parent_i(void) { return parent_i_; }
-  int parent_j(void) { return parent_j_; }
+  int parent_i(void) const { return parent_i_; }
+  int parent_j(void) const { return parent_j_; }
   void set_parents(int i = 0, int j = 0) {
     parent_i_ = i;
     parent_j_ = j;

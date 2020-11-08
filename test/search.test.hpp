@@ -22,11 +22,11 @@ SCENARIO("Creando el objeto de busqueda") {
         CHECK(a_star.get_start_pos() == s_expected);
         std::vector<int> c_expected = {0, 0};
         CHECK(a_star.get_car_pos() == c_expected);
-        std::vector<int> g_expected = {9, 9};
+        std::vector<int> g_expected = {2, 2};
         CHECK(a_star.get_goal_pos() == g_expected);
 
-        CHECK(a_star.linear_value() == 12);
-        CHECK(a_star.manhattan_value() == 18);
+        CHECK(a_star.linear_value() == 2);
+        CHECK(a_star.manhattan_value() == 4);
       }
     }
     AND_WHEN("Se lanza el algoritmo") {

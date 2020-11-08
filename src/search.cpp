@@ -10,8 +10,8 @@ Search::Search(Search& other)
   for (auto slot : other.open_) {
     open_.push_back(slot);
   }
-  for (auto slot : other.close_) {
-    close_.push_back(slot);
+  for (auto slot : other.closed_) {
+    closed_.push_back(slot);
   }
 }
 
@@ -29,7 +29,8 @@ void Search::a_star_algorithm(void) {
     open_.erase(std::find(open_.begin(), open_.end(), min));
     /*  ---  */
 
-    close_.push_back(min);
+    closed_.push_back(min);
+
     /* Generating successors */
     std::vector<Slot> successors = get_successors(min);
     /*  ---  */
@@ -58,28 +59,35 @@ void Search::a_star_algorithm(void) {
         new_f = new_g + new_h;
 
         /* If it's not at open list or it is but with lower f, insert it */
-
-        if ((is_in_open(var) == false) ||
-            ((is_in_open(var) == true) && (lower_in_open(var) == false))) {
+        if (is_in_open(var) == false) {
           env_.at(var.pos_i(), var.pos_j())
               .set_parents(min.pos_i(), min.pos_j());
           var.set_parents(min.pos_i(), min.pos_j());
           var.set_g(new_g);
           var.set_f(new_f);
-          std::cout << "Introducing to open a new step\n";
-          std::cout << "(" << var.pos_i() << "," << var.pos_j() << ")\n";
-          std::cout << "G: " << var.get_g() << "\n";
-          std::cout << "H: " << env_.lineal_d(var) << "\n";
-          std::cout << "F: " << var.get_f() << "\n";
+          if ((is_in_open(var) == true) && (lower_in_open(var) == false)) {
+            std::cout << "Updating in open a new step\n";
+            std::cout << "(" << var.pos_i() << "," << var.pos_j() << ")\n";
+            std::cout << "G: " << var.get_g() << "\n";
+            std::cout << "H: " << env_.lineal_d(var) << "\n";
+            std::cout << "F: " << var.get_f() << "\n";
+            update_open_val(var);
+          } else {
+            std::cout << "Introducing to open a new step\n";
+            std::cout << "(" << var.pos_i() << "," << var.pos_j() << ")\n";
+            std::cout << "G: " << var.get_g() << "\n";
+            std::cout << "H: " << env_.lineal_d(var) << "\n";
+            std::cout << "F: " << var.get_f() << "\n";
 
-          open_.push_back(var);
+            open_.push_back(var);
+          }
         }
       }
-      /*  ---  */
     }
-
-    /* Controll with found dest */
+    /*  ---  */
   }
+
+  /* Controll with found dest */
 }
 
 void Search::trace_path(Slot temp) {
@@ -111,6 +119,7 @@ std::vector<Slot> Search::get_successors(const Slot& q) {
   Slot east = env_.pos(q.pos_i(), q.pos_j() + 1) != -1
                   ? env_.at(q.pos_i(), q.pos_j() + 1)
                   : Slot(-1, -1, O);
+
   return std::vector<Slot>{north, west, south, east};
 }
 
@@ -126,7 +135,7 @@ bool Search::is_in_open(const Slot& other) {
 
 bool Search::is_in_close(const Slot& other) {
   bool flag = false;
-  for (auto var : close_) {
+  for (auto var : closed_) {
     if ((var.pos_i() == other.pos_i()) && (var.pos_j() == other.pos_j())) {
       flag = true;
     }
@@ -145,4 +154,14 @@ bool Search::lower_in_open(const Slot& other) {
     }
   }
   return flag;
+}
+
+void Search::update_open_val(const Slot& other) {
+  for (auto var : open_) {
+    if ((var.pos_i() == other.pos_i()) && (var.pos_j() == other.pos_j())) {
+      var.set_f(other.get_f());
+      var.set_g(other.get_g());
+      var.set_parents(other.parent_i(), other.parent_j());
+    }
+  }
 }

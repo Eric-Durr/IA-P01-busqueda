@@ -13,7 +13,7 @@ const int MOVE_VAL = 1;
 class Search {
  private:
   std::vector<Slot> open_;
-  std::vector<Slot> close_;
+  std::vector<Slot> closed_;
   Slot start_, goal_;
   std::stack<Slot> path_;
   Environment env_;
@@ -23,7 +23,7 @@ class Search {
   Search(Search& other);
 
   bool o_list_empty(void) { return open_.size() == 0; }
-  bool c_list_empty(void) { return close_.size() == 0; }
+  bool c_list_empty(void) { return closed_.size() == 0; }
 
   int o_list_size(void) { return open_.size(); }
   std::vector<int> get_start_pos(void) {
@@ -45,6 +45,7 @@ class Search {
   bool is_in_open(const Slot& other);
   bool lower_in_open(const Slot& other);
   bool is_in_close(const Slot& other);
+  void update_open_val(const Slot& other);
 };
 
 #endif  // INCLUDE_SEARCH_HPP_
