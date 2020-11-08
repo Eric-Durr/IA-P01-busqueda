@@ -141,32 +141,32 @@ void Environment::move_car(cardinal x, int steps) {
   }
 }
 
-int Environment::lineal_d() {
+double Environment::lineal_d() {
   return sqrt(pow(get_goal().pos_j() - get_car().pos()[1], 2) +
               pow(get_goal().pos_i() - get_car().pos()[0], 2));
 }
 
-int Environment::manhattan_d() {
+double Environment::manhattan_d() {
   return (abs(get_goal().pos_i() - get_car().pos()[0]) +
           abs(get_goal().pos_j() - get_car().pos()[1]));
 }
 
-int Environment::lineal_d(const Slot& begin) {
+double Environment::lineal_d(const Slot& begin) {
   return sqrt(pow(get_goal().pos_j() - begin.pos_j(), 2) +
               pow(get_goal().pos_i() - begin.pos_i(), 2));
 }
 
-int Environment::manhattan_d(const Slot& begin) {
+double Environment::manhattan_d(const Slot& begin) {
   return (abs(get_goal().pos_i() - begin.pos_i()) +
           abs(get_goal().pos_j() - begin.pos_j()));
 }
 
-int Environment::lineal_d(const Slot& begin, const Slot& end) {
+double Environment::lineal_d(const Slot& begin, const Slot& end) {
   return sqrt(pow(end.pos_j() - begin.pos_j(), 2) +
               pow(end.pos_i() - begin.pos_i(), 2));
 }
 
-int Environment::manhattan_d(const Slot& begin, const Slot& end) {
+double Environment::manhattan_d(const Slot& begin, const Slot& end) {
   return (abs(end.pos_i() - begin.pos_i()) + abs(end.pos_j() - begin.pos_j()));
 }
 
