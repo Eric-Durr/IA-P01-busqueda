@@ -10,7 +10,12 @@
 #define CAR__CHR " © "
 #define GOAL_CHR " X "
 
-enum slot_t { V, O, C, G };
+#define U_PATH_CHR " ↑ "
+#define R_PATH_CHR " → "
+#define D_PATH_CHR " ↓ "
+#define L_PATH_CHR " ← "
+
+enum slot_t { V, O, C, G, U, R, D, L };
 
 class Slot {
  private:

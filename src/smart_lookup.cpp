@@ -1,4 +1,4 @@
-#include <fstream>
+/* #include <fstream>
 #include <iostream>
 
 #include "../include/environment.hpp"
@@ -11,6 +11,7 @@ int main(void) {
   int i, o_fil, o_col, m_fil, m_col;
   int c_fil, c_col;
   float rand_obs;
+
   std::cout << "PRÁCTICA: Estrategias de Búsqueda.\n";
 
   try {
@@ -127,4 +128,4 @@ int main(void) {
     std::cerr << "\n[!] Ha ocurrido un error.\n";
     return 1;
   }
-}
+} */

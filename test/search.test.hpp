@@ -20,7 +20,7 @@ SCENARIO("Creando el objeto de busqueda") {
     env.set_obs(7, 1);
     env.set_obs(9, 1);
 
-    Search a_star(env, 2);
+    Search a_star(env, 1);
     WHEN("Comprobamos atributos") {
       THEN("Lista abierta y lista cerrada vacia") {
         CHECK(a_star.o_list_empty() == true);

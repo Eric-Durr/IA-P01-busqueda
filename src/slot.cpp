@@ -26,6 +26,22 @@ std::ostream& operator<<(std::ostream& os, const Slot& obj) {
     case G:
       os << GOAL_CHR;
       break;
+
+    case U:
+      os << U_PATH_CHR;
+      break;
+
+    case R:
+      os << R_PATH_CHR;
+      break;
+
+    case D:
+      os << D_PATH_CHR;
+      break;
+
+    case L:
+      os << L_PATH_CHR;
+      break;
     default:
       os << "?";
       break;

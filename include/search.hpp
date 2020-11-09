@@ -2,6 +2,8 @@
 #ifndef INCLUDE_SEARCH_HPP_
 #define INCLUDE_SEARCH_HPP_
 
+#include <unistd.h>
+
 #include <iostream>
 #include <stack>
 #include <vector>

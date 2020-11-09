@@ -9,11 +9,6 @@
 #include "math.h"
 #include "slot.hpp"
 
-#define U_PATH_CHR "↑"
-#define R_PATH_CHR "→"
-#define D_PATH_CHR "↓"
-#define L_PATH_CHR "←"
-
 class Environment {
  private:
   int m_, n_;
@@ -58,7 +53,7 @@ class Environment {
       const Slot& begin,
       const Slot& end);  // Funcion heuristica manhattan (Slot -Slot)
 
-    friend std::ostream& operator<<(std::ostream& os, Environment& obj);
+  friend std::ostream& operator<<(std::ostream& os, Environment& obj);
 
  private:
   int set(int i, int j, slot_t type);  // Cambia a un tipo concreto de elemento
