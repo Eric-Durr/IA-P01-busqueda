@@ -91,7 +91,6 @@ Slot& Environment::get_goal() {
 }
 
 void Environment::random_obs(float ratio) {
-  clear_obs();
   srand(time(NULL));
   int size = m_ * n_;
   int r_obs = size * ratio;
@@ -99,7 +98,9 @@ void Environment::random_obs(float ratio) {
   for (int i = 1; i < r_obs; i++) {
     int r_m = rand() % m_ + 1;
     int r_n = rand() % n_ + 1;
-    set_obs(r_n, r_m);
+    if ((at(r_n, r_m).s_type() != C) && (at(r_n, r_m).s_type() != G)) {
+      set_obs(r_n, r_m);
+    }
   }
 }
 
@@ -171,7 +172,6 @@ double Environment::manhattan_d(const Slot& begin, const Slot& end) {
 }
 
 std::ostream& operator<<(std::ostream& os, Environment& obj) {
-  
   os << "┌";
   for (int i = 0; i < obj.n_; i++) os << "───";
   os << "┐\n";

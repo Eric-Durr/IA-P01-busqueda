@@ -55,26 +55,36 @@ int main(void) {
       std::cout << a_star << std::endl;
 
     } else if (modo == 2) {
-      std::cout << "\n2.Modo aleatorio.\n";
+      std::cout << "\n1.Modo manual.\n";
       std::cout << "Introduzca las dimensiones del entorno(Fila Columna): ";
       std::cin >> fil >> col;
-      Environment tab(fil, col);
+      Environment env(fil, col);
 
-      std::cout << "\nSe crearán de manera random los obstáculos.\n";
-      std::cin >> rand_obs;
-      tab.random_obs(rand_obs);
+      std::cout << "\nIntroduzca la posición del coche (Fila Columna): ";
+      std::cin >> c_fil >> c_col;
+      env.set_car(c_fil - 1, c_col - 1);
 
       std::cout << "\nIntroduzca la posición de la meta (Fila Columna): ";
       std::cin >> m_fil >> m_col;
-      tab.set_goal(m_fil, m_col);
+      env.set_goal(m_fil - 1, m_col - 1);
 
-      tab.set_car(0, 0);
+      std::cout << "\nSe crearán de manera random los obstáculos: ";
+      std::cin >> rand_obs;
+      env.random_obs(rand_obs);
 
-      std::cout << "\nEntorno y visualiacion de la trayectoria:\n";
-      std::cout << tab << std::endl;
+      std::cout << "\nIntroduzca la función heurística deseada, siendo la "
+                   "1.Euclidea y la 2.Manhattan: ";
+      std::cin >> modo;
+      Search a_star(env, modo);
+      a_star.a_star_algorithm();
+      std::cout << "\nVisualización del entorno:\n";
+      std::cout << env << std::endl;
+
+      std::cout << a_star << std::endl;
 
     } else if (modo == 3) {
-      int fil, col, g_fil, g_col, num_obs, o_fil, o_col;
+      int fil, col, g_fil, g_col, num_obs, o_fil, o_col, c_fil, c_col,
+          modo_fheuristica;
       std::string nombreArchivo;
 
       std::cout << "Introduzca el nombre del fichero de entrada: ";
@@ -84,20 +94,26 @@ int main(void) {
       if (!file) std::cout << "[!] Error. No se ha encontrado el fichero.\n";
 
       file >> fil >> col;
-      Environment tab(fil, col);
+      Environment env(fil, col);
+      file >> c_fil >> c_col;
+      env.set_car(c_fil - 1, c_col - 1);
       file >> g_fil >> g_col;
-      tab.set_goal(g_fil, g_col);
+      env.set_goal(g_fil - 1, g_col - 1);
       file >> num_obs;
 
       for (int i = 0; i < num_obs; i++) {
         file >> o_fil >> o_col;
-        tab.set_obs(o_fil - 1, o_col - 1);
+        env.set_obs(o_fil - 1, o_col - 1);
       }
 
-      tab.set_car(0, 0);
+      file >> modo_fheuristica;
 
-      std::cout << "\nEntorno y visualiacion de la trayectoria:\n";
-      std::cout << tab << std::endl;
+      Search a_star(env, modo_fheuristica);
+      a_star.a_star_algorithm();
+      std::cout << "\nVisualización del entorno:\n";
+      std::cout << env << std::endl;
+
+      std::cout << a_star << std::endl;
 
     } else {
       std::cerr << "[!] ERROR. Valor introducido inválido. Vuelva a ejecutar "
