@@ -6,9 +6,9 @@ SCENARIO("Creando el objeto de busqueda") {
   GIVEN(
       "Entorno de 10 * 10, un coche en la posicion por defecto, y una meta en "
       "la 9*9 ") {
-    Environment env(10, 10);
+    Environment env(50, 50);
     env.set_car(0, 0);
-    env.set_goal(9, 9);
+    env.set_goal(49, 49);
     env.set_obs(0, 1);
 
     env.set_obs(1, 1);
@@ -20,7 +20,7 @@ SCENARIO("Creando el objeto de busqueda") {
     env.set_obs(7, 1);
     env.set_obs(9, 1);
 
-    Search a_star(env, 1);
+    Search a_star(env, 2);
     WHEN("Comprobamos atributos") {
       THEN("Lista abierta y lista cerrada vacia") {
         CHECK(a_star.o_list_empty() == true);
