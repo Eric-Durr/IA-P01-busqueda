@@ -78,6 +78,12 @@ $(BUILD_PATH)/%.o: $(SRC_PATH)/%.$(SRC_EXT)
 	@echo "Compiling: $< -> $@"
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -MP -MMD -c $< -o $@
 
+
+.PHONY: clean all graphic
+graphic: 
+	g++ graphic/smart_lookup.cpp  src/search.cpp src/environment.cpp src/slot.cpp src/smart_car.cpp -o graphic_lookup -lglut -lGLU -lGL
+
+
 .PHONY: clean all test
 test:
 	@echo "Making tests: $(TEST_NAME)"

@@ -71,6 +71,16 @@ void Environment::clear_obs() {
   }
 }
 
+void Environment::clear_car() {
+  for (int i = 0; i < m_; i++) {
+    for (int j = 0; j < n_; j++) {
+      if (at(i, j).s_type() == C) {
+        at(i, j).s_type(V);
+      }
+    }
+  }
+}
+
 SmartCar& Environment::get_car() {
   for (int i = 0; i < m_; i++) {
     for (int j = 0; j < n_; j++) {

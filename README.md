@@ -29,6 +29,14 @@ programación C++ al cual se le han añadido algunas librerías.
 - Algoritmo de busqueda
     [ALGORITMO DE BÚSQUEDA A*](https://escarbandocodigo.wordpress.com/2011/07/11/1051/)
 
+- [OpenGL](https://www.opengl.org/)
+> (si pretende probar la versión gráfica debe instalar la librería GLUT, la cual es una colección de herramientas de open gl)
+
+Para adquirirla:
+  ```
+    sudo apt-get install freeglut3 freeglut3-dev
+  ```
+
 ## Uso del proyecto
 
 - ```$ make``` -> Compilar el programa

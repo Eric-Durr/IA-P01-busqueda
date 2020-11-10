@@ -20,6 +20,9 @@ class Environment {
   ~Environment() {}
 
   int size() { return slots_.size(); }
+  int get_n() const { return n_; }
+  int get_m() const { return m_; }
+
   Slot& at(int i, int j);  // Checked
   int pos(int i, int j) const;
   SmartCar& get_car();
@@ -33,6 +36,7 @@ class Environment {
     slots_[pos(i, j)].s_type(V);
   }                  // Elimina una casilla determinada
   void clear_obs();  // Limpia el entorno
+  void clear_car();  // Limpia el entorno
 
   void random_obs(float ratio);  // Genarador de obstaculos
 
