@@ -67,7 +67,7 @@ void Search::a_star_algorithm(void) {
         var.set_f(var.get_g() + heuristic_function(var)); /* blocked h */
 
         std::cout << std::endl;
-        std::cout << "\n¡Meta encontrada con éxito!\n";
+        std::cout << "\nGOAL FOUND !\n";
         trace_path(var);
         found_goal = true;
         return;
@@ -99,7 +99,7 @@ void Search::a_star_algorithm(void) {
   if (found_goal == false) {
     std::cout << std::endl;
     std::cout << std::endl;
-    std::cout << "NO SE PUDO ENCONTRAR LA META\n ";
+    std::cout << "VEHICLE CANT REACH THE GOAL\n ";
   }
   return;
 }
@@ -116,7 +116,7 @@ void Search::trace_path(Slot temp) {
 std::string Search::path_to_string(void) {
   std::string path = "";
   if (path_.size() != 0) {
-    for (int i = path_.size(); i >= 0; i--) {
+    for (int i = path_.size() - 1; i >= 0; i--) {
       path += "(";
       path += std::to_string(path_[i].pos_i() + 1);
       path += ",";
@@ -135,7 +135,7 @@ std::ostream& operator<<(std::ostream& os, Search& object) {
   os << " --- MOVES TRACEBACK ---\n\n";
 
   os << "Number of moves: " << object.path_size() << "\n";
-  os << "MOVES: " << object.path_to_string() << "\n";
+  // os << "MOVES: " << object.path_to_string() << "\n";
   for (int i = object.path_size() - 1; i > 0; i--) {
     if (object.path_[i].pos_i() == object.path_[i].parent_i() &&
         object.path_[i].pos_j() < object.path_[i].parent_j()) {

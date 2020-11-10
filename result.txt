@@ -274,3 +274,14 @@ Goal slot found
 test cases: 1 | 1 failed
 assertions: 8 | 5 passed | 3 failed
 
+
+
+ --- Smart lookup with a-star algorithm menú ---
+
+
+1) Manual environment creator
+2) Semi-random environment creator
+3) File readed environment creator
+0) Exit program
+
+> 

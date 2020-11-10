@@ -92,12 +92,11 @@ Slot& Environment::get_goal() {
 
 void Environment::random_obs(float ratio) {
   srand(time(NULL));
-  int size = m_ * n_;
-  int r_obs = size * ratio;
+  int r_obs = ratio * n_ * m_;
 
-  for (int i = 1; i < r_obs; i++) {
-    int r_m = rand() % m_ + 1;
-    int r_n = rand() % n_ + 1;
+  for (int i = 0; i < r_obs; i++) {
+    int r_m = rand() % m_;
+    int r_n = rand() % n_;
     if ((at(r_n, r_m).s_type() != C) && (at(r_n, r_m).s_type() != G)) {
       set_obs(r_n, r_m);
     }
