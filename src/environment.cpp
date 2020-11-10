@@ -44,7 +44,7 @@ int Environment::pos(int i, int j) const {
 
 int Environment::set(int i, int j, slot_t type) {
   if ((i >= 0 && i < m_) && (j >= 0 && j < n_)) {
-    at(i, j).s_change(type);
+    at(i, j).s_type(type);
     return 0;
   } else {
     return 1;
@@ -55,7 +55,7 @@ int Environment::set_obs(int i, int j) { return set(i, j, O); }
 int Environment::set_goal(int i, int j) { return set(i, j, G); }
 int Environment::set_car(int i, int j) {
   if ((i >= 0 && i < m_) && (j >= 0 && j < n_)) {
-    at(i, j).s_change(C);
+    at(i, j).s_type(C);
     at(i, j).get_car().pos(i, j);
     return 0;
   } else {
@@ -66,7 +66,7 @@ int Environment::set_car(int i, int j) {
 void Environment::clear_obs() {
   for (int i = 0; i < m_; i++) {
     for (int j = 0; j < n_; j++) {
-      at(i, j).s_change(V);
+      at(i, j).s_type(V);
     }
   }
 }
@@ -109,29 +109,29 @@ void Environment::move_car(cardinal x, int steps) {
   switch (x) {
     case N:
       if (get_car().sensor(N) == false) {
-        at(current_pos[0], current_pos[1]).s_change(V);
-        at(current_pos[0] - steps, current_pos[1]).s_change(C);
+        at(current_pos[0], current_pos[1]).s_type(V);
+        at(current_pos[0] - steps, current_pos[1]).s_type(C);
         get_car().pos(current_pos[0] - steps, current_pos[1]);
       }
       break;
     case S:
       if (get_car().sensor(S) == false) {
-        at(current_pos[0], current_pos[1]).s_change(V);
-        at(current_pos[0] + steps, current_pos[1]).s_change(C);
+        at(current_pos[0], current_pos[1]).s_type(V);
+        at(current_pos[0] + steps, current_pos[1]).s_type(C);
         get_car().pos(current_pos[0] + steps, current_pos[1]);
       }
       break;
     case E:
       if (get_car().sensor(E) == false) {
-        at(current_pos[0], current_pos[1]).s_change(V);
-        at(current_pos[0], current_pos[1] + steps).s_change(C);
+        at(current_pos[0], current_pos[1]).s_type(V);
+        at(current_pos[0], current_pos[1] + steps).s_type(C);
         get_car().pos(current_pos[0], current_pos[1] + steps);
       }
       break;
     case W:
       if (get_car().sensor(W) == false) {
-        at(current_pos[0], current_pos[1]).s_change(V);
-        at(current_pos[0], current_pos[1] - steps).s_change(C);
+        at(current_pos[0], current_pos[1]).s_type(V);
+        at(current_pos[0], current_pos[1] - steps).s_type(C);
 
         get_car().pos(current_pos[0], current_pos[1] - steps);
       }
