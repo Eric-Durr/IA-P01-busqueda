@@ -333,10 +333,16 @@ Inteligencia Artificial - ESIT (Escuela superior de Ingeniería y Tecnología) U
 <br>
 
 ## **7. Referencias.**
+
+<!-- aportadas por eric -->
 - [Implementación de algoritmo a-estrella | GeeksForGeeks](https://www.geeksforgeeks.org/a-search-algorithm/)
   > Implementación en un solo fichero del algoritmo a-estrella en lenguaje c++.
 
 - [Cálculo del tiempo de ejecución | GeeksForGeeks](https://www.geeksforgeeks.org/measure-execution-time-function-cpp/)
   >
+
+<!-- Aportadas por Elena -->
+
+
 <br>
 <br>
