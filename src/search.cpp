@@ -85,14 +85,8 @@ void Search::a_star_algorithm(void) {
           var.set_parents(min.pos_i(), min.pos_j());
           var.set_g(new_g);
           var.set_f(new_f);
+
           open_.push_back(var);
-        } else if ((is_in_open(var) == true) && (lower_in_open(var) == false)) {
-          env_.at(var.pos_i(), var.pos_j())
-              .set_parents(min.pos_i(), min.pos_j());
-          var.set_parents(min.pos_i(), min.pos_j());
-          var.set_g(new_g);
-          var.set_f(new_f);
-          update_open_val(var);
         }
       }
     }

@@ -8,7 +8,7 @@ BIN_PATH = $(BUILD_PATH)/bin
 TEST_PATH = tests
 
 # executable # 
-BIN_NAME = slu_prototype2
+BIN_NAME = smart_lookup
 TEST_NAME = smart_lookup_test
 
 # extensions #
