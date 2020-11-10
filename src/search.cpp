@@ -85,11 +85,14 @@ void Search::a_star_algorithm(void) {
           var.set_parents(min.pos_i(), min.pos_j());
           var.set_g(new_g);
           var.set_f(new_f);
-          if ((is_in_open(var) == true) && (lower_in_open(var) == false)) {
-            update_open_val(var);
-          } else {
-            open_.push_back(var);
-          }
+          open_.push_back(var);
+        } else if ((is_in_open(var) == true) && (lower_in_open(var) == false)) {
+          env_.at(var.pos_i(), var.pos_j())
+              .set_parents(min.pos_i(), min.pos_j());
+          var.set_parents(min.pos_i(), min.pos_j());
+          var.set_g(new_g);
+          var.set_f(new_f);
+          update_open_val(var);
         }
       }
     }
@@ -140,22 +143,22 @@ std::ostream& operator<<(std::ostream& os, Search& object) {
     if (object.path_[i].pos_i() == object.path_[i].parent_i() &&
         object.path_[i].pos_j() < object.path_[i].parent_j()) {
       object.env_.at(object.path_[i].pos_i(), object.path_[i].pos_j())
-          .s_change(L);
+          .s_type(L);
     }
     if (object.path_[i].pos_i() == object.path_[i].parent_i() &&
         object.path_[i].pos_j() > object.path_[i].parent_j()) {
       object.env_.at(object.path_[i].pos_i(), object.path_[i].pos_j())
-          .s_change(R);
+          .s_type(R);
     }
     if (object.path_[i].pos_i() < object.path_[i].parent_i() &&
         object.path_[i].pos_j() == object.path_[i].parent_j()) {
       object.env_.at(object.path_[i].pos_i(), object.path_[i].pos_j())
-          .s_change(U);
+          .s_type(U);
     }
     if (object.path_[i].pos_i() > object.path_[i].parent_i() &&
         object.path_[i].pos_j() == object.path_[i].parent_j()) {
       object.env_.at(object.path_[i].pos_i(), object.path_[i].pos_j())
-          .s_change(D);
+          .s_type(D);
     }
   }
   os << object.env_ << std::endl;

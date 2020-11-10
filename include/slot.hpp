@@ -40,8 +40,7 @@ class Slot {
   double get_g(void) const { return g_; }
 
   slot_t& s_type() { return obstacle_; }
-  slot_t& s_type(slot_t op) { obstacle_ = op; }
-  void s_change(slot_t op);
+  void s_type(slot_t op) { obstacle_ = op; }
 
   int pos_i(void) const { return loc_i_; }
   int pos_j(void) const { return loc_j_; }

@@ -36,8 +36,6 @@ class Search {
   std::vector<int> get_goal_pos(void) {
     return std::vector<int>{goal_.pos_i(), goal_.pos_j()};
   }
-  int linear_value(void) { return env_.lineal_d(); }
-  int manhattan_value(void) { return env_.manhattan_d(); }
 
   void a_star_algorithm(void);
 

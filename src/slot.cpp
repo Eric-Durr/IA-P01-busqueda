@@ -10,8 +10,6 @@ Slot::Slot(int loc_i, int loc_j, slot_t op)
   if (op == C) car_.pos(loc_i, loc_j);
 }
 
-void Slot::s_change(slot_t op) { obstacle_ = op; }
-
 std::ostream& operator<<(std::ostream& os, const Slot& obj) {
   switch (obj.obstacle_) {
     case V:
