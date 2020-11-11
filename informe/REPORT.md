@@ -197,6 +197,10 @@ Por último, podemos destacar que cada vez que termine la ejecución del program
 
 ### 4.3. Funciones heurísticas y justificación.
 
+Las funciones heurísticas utilizadas han sido la Euclidea y la Manhattan. Hablaremos de ellas:
+
+- Función heurística Euclidea:
+Esta función aplica la fórmula matemática que nos permite medir la distancia en línea recta entre dos puntos en un espacio de n-dimensiones. En nuestro caso, esta función se realizará en línea recta entre la posición del coche y la posición de la meta, sin tener en cuenta los obstáculos definidos, por lo que se obtendrá el resultado de esta operación matemática. Este resultado nos será útil posteriormente, ya que será uno de los factores que utilizarémos para hallar el camino óptimo.
 
 <br>
 <br>
