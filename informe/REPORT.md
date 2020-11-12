@@ -628,7 +628,19 @@ una opción de ratio de obstáculos y llamando al método ya descrito [random_ob
 
 ### 2.3. Argumentación sobre el entorno de programación escogido.
 
+Se ha escogido un entorno basado en el lenguaje C++ por diversos motivos. Fundamentalmente la comodidad de usar un lenguaje ya conocido y en el que ambos
+componentes pueden manejarse de manera independiente.
 
+Un punto muy positivo que ayudó a la elección del lenguaje es la amplia comunidad y volumen de documentación del que dispone. Esto ha facilitado en gran medida el desarrollo del proytecto. También haq influido en la posibilidad de implementar técnicas de desarrollo como TDD o BDD mediante librerías que la comunidad ha desarrollado de manera opensource como es Catch2.
+
+También es bastante similar a muchos lenguajes por lo que muchas personas que quisieran acceder al proyecto podrían entender muchos de los aspectos que lo componen
+
+Por sus características C++ es un lenguaje que tiene mucha potencia de cómputo y, para el caso que nos ocupa, resulta muy útil. Se obtendrán resultados a mayor velocidad que con muchos otros lenguajes.
+
+Por otro lado y entrando en aspectos más generales se ha optado por un entorno de 
+programación basado en directorios que separan cabeceras, código de desarrollo y tests, de manera que un solo fichero Makefile pueda componer rápidamente muchos de los comandos más frecuentes para el proyecto.
+
+El trabajo con Git como herramienta colaborativa requiere también de un espacio organizado y fuertemente modular de cara a evitar conflictos.
 
 <br>
 <br>
@@ -671,12 +683,167 @@ una opción de ratio de obstáculos y llamando al método ya descrito [random_ob
 ### 4.1. Pseudo-código.
 
 
+    ALGORITMO DE BÚSQUEDA A-ESTRELLA
+
+      nodo_inicial.valor_f = 0
+      insertar nodo inicial en lista abierta 
+
+      MIENTRAS (lista abierta no vacía)
+
+        q = nodo mínimo de lista abierta
+        borrar q de lista abierta
+        insertar q en lista cerrada
+
+        generar sucesores de q
+
+        PARA (cada sucesor)
+
+          SI (es el destino)
+
+            sucesor_padre = q
+            sucesor.valor_g = q.valor_g + unidad_de_coste
+            sucesor.valor_f = sucesor.valor_g + función_heurística(sucesor)
+            generar camino
+            SALIR DE LA BÚSQUEDA
+          __
+
+          EN OTRO CASO SI (no está en la lista cerrada y no es obstáculo)
+            g = q.valor_g + unidad_de_coste;
+            f = funcion_heurística(sucesor)
+            SI (no está en la lista abierta)
+              actualizar padres en el entorno
+              sucesor_padre = q
+              sucesor.valor_g = g
+              sucesor.valor_f = f
+              insertar sucesor en lista abierta
+            __
+          __
+        __ 
+      __
+
+      SALIR DE LA BÚSQUEDA
+    __
+          
+La implementación del pseudocósigo implementado se traduce directamente a C++
+destacando algunos aspectos esenciales
+1. Se emplea una variable para detectar si la meta ha sido encontrada, de este modo al llegar al final del algoritmo si no se ha encontrado se podrá notificar de ello:
+
+```cpp
+if (found_goal == false) {
+    std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << "VEHICLE CANT REACH THE GOAL\n ";
+}
+```
+
+2. Para hallar el valor mínimo se itera con un bucle automático habiendo establecido un valor previo para el nodo mínimo (en este caso el útlimo valor de la lista). Acto seguido se elimina ese nodo de la lista abierta haciendo uso de la STL y se inserta en la lista cerrada.
+
+```cpp
+Slot min = open_.back();
+for (auto current : open_)
+  if (min.get_f() >= current.get_f()) {
+    min = current;
+}
+open_.erase(std::find(open_.begin(), open_.end(), min));
+/*  ---  */
+
+closed_.push_back(min);
+```
+
+3. Los sucesores se generan haciendo uso de un método privado, este emplea el entorno para localizar el nodo origen y componer un vector que contenga en orden los puntos cardinales que se consideran como sucesores. Dentro de este método si la posición no es accesible se sitúa en (-1, -1) y se establece su estado como obstáculo. 
+
+```cpp
+std::vector<Slot> Search::get_successors(const Slot& q) {
+  Slot north = env_.pos(q.pos_i() - 1, q.pos_j()) != -1
+                   ? env_.at(q.pos_i() - 1, q.pos_j())
+                   : Slot(-1, -1, O);
+  ...
+  return std::vector<Slot>{north, ...};
+}
+```
+
+4. Luego esta lista de casillas será iterada para escoger las no visitadas e introducirlas en la lista abierta con sus respectivos valores o localizar la meta. También se actualizan los estados que componen el camino.
+
+```cpp
+for (auto var : successors) {
+      if (var.get_obs() == G) {
+        env_.at(var.pos_i(), var.pos_j()).set_parents(min.pos_i(), min.pos_j());
+        var.set_parents(min.pos_i(), min.pos_j());
+        var.set_g(min.get_g() + MOVE_VAL); /* 2nd arg is in doubt */
+        var.set_f(var.get_g() + heuristic_function(var)); /* blocked h */
+
+        std::cout << std::endl;
+        std::cout << "\nGOAL FOUND !\n";
+        trace_path(var);
+        found_goal = true;
+        return;
+
+        /* If it's not yet at close list and it´s not an obstacle */
+      } else if ((is_in_close(var) == false) && (var.is_obs() == false)) {
+        new_g = min.get_g() + MOVE_VAL;
+        new_h = heuristic_function(var);
+        new_f = new_g + new_h;
+
+        /* If it's not at open list or it is but with lower f, insert it */
+        if (is_in_open(var) == false) {
+          env_.at(var.pos_i(), var.pos_j())
+              .set_parents(min.pos_i(), min.pos_j());
+          var.set_parents(min.pos_i(), min.pos_j());
+          var.set_g(new_g);
+          var.set_f(new_f);
+
+          open_.push_back(var);
+        }
+      }
+    }
+```
+5. Cuando se alcanza la meta se llama a trace_path() para componer el camino. Este método va recorriendo los predecesores de cada casilla hasta llegar al origen, el resultado se guarda en un atributo. "temp" hace alusión al último nodo revisado, osea la meta.
+
+```cpp
+while (temp.parent_i() != -1 && temp.parent_j() != -1) {
+    path_.push_back(temp);
+    temp = env_.at(temp.parent_i(), temp.parent_j());
+  }
+
+```
+
+
+
+
+      
+
+
+
 <br>
 <br>
 
 <div id="id4d2">
 
 ### 4.2. Estructura de datos empleada.
+
+Se pueden distinguir tres estructuras de datos. Empezaremos por el propio entorno.
+
+1. El entorno que describe la ubicación de todas las casillas se  compone por un vector que simula una matriz, dentro de cada elemento del vector se halla cada casilla.
+
+
+```
+<-------NxM------->   
+[ | | | ... | | | ] 
+
+
+      j0 j1 j2    jm        j0 j1 j2    jm             j0 j1 j2    jm
+ [i0(|  |  | ... |  |), i1(|  |  | ... |  |), ..., in(|  |  | ... |  |)]
+```
+
+  Se opera por completo dentro de este medio a la hora de localizar obstáculos, mover el coche y situar la meta. Su localización se describe en el apartado 2.2 junto a la descripción de la implementación del entorno.
+
+2. Luego se distinguen las listas cerrada y abierta que nuevamente son vectores de casillas, sin embargo estas estructuras sencillamente son contenedores, no simulan una matriz como lo hace el entorno. También se emplea un vector denominado como "path" que contendrá, en orden, las casillas del camino óptimo.  
+
+
+3. Por último el  objeto casilla (Slot) sirve de nodo para almacenar cada elemento del entorno así como su posición y la de su predecesor.
+```
+ (ELEMENTO DEL ENTORNO | POS_I ,POS_J | PADRE_I, PADRE_J)
+```
 
 <br>
 <br>
@@ -848,6 +1015,8 @@ una opción de ratio de obstáculos y llamando al método ya descrito [random_ob
 
 - [Cálculo del tiempo de ejecución | GeeksForGeeks](https://www.geeksforgeeks.org/measure-execution-time-function-cpp/)
   >
+
+- [advantages and disadvantages of C++ | Data flair ](https://data-flair.training/blogs/advantages-and-disadvantages-of-cpp/)
 
 <!-- Aportadas por Elena -->
 
