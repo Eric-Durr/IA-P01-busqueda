@@ -1,5 +1,6 @@
 #include <unistd.h>
 
+#include <chrono>
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -8,6 +9,8 @@
 #include "../include/search.hpp"
 #include "../include/slot.hpp"
 #include "../include/smart_car.hpp"
+
+using namespace std::chrono;
 
 void error_msg(int opt);
 
@@ -154,7 +157,15 @@ void manual_env(void) {
 
   Search man_env_search(man_env, h_op);
 
+  auto start = high_resolution_clock::now();
+
   man_env_search.a_star_algorithm();
+
+  auto stop = high_resolution_clock::now();
+  auto duration = duration_cast<microseconds>(stop - start);
+
+  std::cout << "Time taken by function: " << duration.count() << " microseconds"
+            << "\n";
 
   if (row_sz > 100 || col_sz > 100) {
     std::cout << "Output file generated because of the size\n";
@@ -177,7 +188,7 @@ void introduce_obstacles(Environment& man_env) {
     std::cin >> obs_i_pos >> obs_j_pos;
 
     if (man_env.pos(obs_i_pos - 1, obs_j_pos - 1) == -1) {
-          std::cout << "\nERROR: Make sure that the numbers are between 1 and "
+      std::cout << "\nERROR: Make sure that the numbers are between 1 and "
                    "the limits\n"
                 << "try again\n\n";
     }
@@ -287,7 +298,15 @@ void random_env(void) {
 
   Search rand_env_search(rand_env, h_op);
 
+  auto start = high_resolution_clock::now();
+
   rand_env_search.a_star_algorithm();
+
+  auto stop = high_resolution_clock::now();
+  auto duration = duration_cast<microseconds>(stop - start);
+
+  std::cout << "Time taken by function: " << duration.count() << " microseconds"
+            << "\n";
 
   if (row_sz > 100 || col_sz > 100) {
     std::cout << "Output file generated because of the size\n";
@@ -328,7 +347,16 @@ void file_env(void) {
   file >> h_op;
 
   Search a_star(env, h_op);
+
+  auto start = high_resolution_clock::now();
+
   a_star.a_star_algorithm();
+
+  auto stop = high_resolution_clock::now();
+  auto duration = duration_cast<microseconds>(stop - start);
+
+  std::cout << "Time taken by function: " << duration.count() << " microseconds"
+            << "\n";
 
   if (row_sz > 100 || col_sz > 100) {
     std::cout << "Output file generated because of the size\n";

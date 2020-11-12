@@ -222,26 +222,33 @@ Esta función, de forma similar a la anterior, trata de una fórmula matemática
 ### Evaluación de las tablas sin obstáculos 
 <br>
 
-| Funciones H | Número de nodos expandidos | Longitud del camino (pasos) | tiempo (s) |
+Escenario pequeño (50*50). Encontrándose el coche en la posición (1,1) y la meta en la (50,50)
+
+| Funciones H | Número de nodos expandidos | Longitud del camino (pasos) | tiempo (ms) |
+| :------------- | :----------: | :-----------: | -----------: | 
+|  Euclidea | xxxxxxxxx | 98    | 13081730 |
+| Manhattan   | xxxxxxxxx | 98  | 47356 |
+
+<br>
+<br>
+
+
+Escenario mediano (100*100). Encontrándose el coche en la posición (1,1) y la meta en la (100,100)
+
+| Funciones H | Número de nodos expandidos | Longitud del camino (pasos) | tiempo (ms) |
+| :------------- | :----------: | :-----------: | -----------: | 
+|  Euclidea | xxxxxxxxx |   198  | xxxxx |
+| Manhattan   | xxxxxxxxx |  198 | 251489 |
+
+<br>
+<br>
+
+Escenario grande (200*200). Encontrándose el coche en la posición (1,1) y la meta en la (200,200)
+
+| Funciones H | Número de nodos expandidos | Longitud del camino (pasos) | tiempo (ms) |
 | :------------- | :----------: | :-----------: | -----------: | 
 |  Euclidea | xxxxxxxxx | xxxxxxxx    | xxxx |
-| Manhattan   | xxxxxxxxx | xxxxxxxx  | xxxx |
-
-<br>
-<br>
-
-| Funciones H | Número de nodos expandidos | Longitud del camino (pasos) | tiempo (s) |
-| :------------- | :----------: | :-----------: | -----------: | 
-|  Euclidea | xxxxxxxxx | xxxxxxxx    | xxxx |
-| Manhattan   | xxxxxxxxx | xxxxxxxx  | xxxx |
-
-<br>
-<br>
-
-| Funciones H | Número de nodos expandidos | Longitud del camino (pasos) | tiempo (s) |
-| :------------- | :----------: | :-----------: | -----------: | 
-|  Euclidea | xxxxxxxxx | xxxxxxxx    | xxxx |
-| Manhattan   | xxxxxxxxx | xxxxxxxx  | xxxx |
+| Manhattan   | xxxxxxxxx | 398  | 1664532 |
 
 
 
