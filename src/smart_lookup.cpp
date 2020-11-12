@@ -16,25 +16,24 @@ void introduce_obstacles(Environment& man_env);
 
 void random_env(void);
 
-void file_env(void);
+void file_env(std::string filename);
 
 int main(int argc, char* argv[]) {
   if (argc > 1) { /* OPCIONES DE LINEA DE COMANDO */
     /* Procesado de la linea de comandos | WIP*/
     {
       int opt;
-      while ((opt = getopt(argc, argv, ":f:rp:")) != -1) {
+      while ((opt = getopt(argc, argv, ":f:r")) != -1) {
         switch (opt) {
           case 'f':
             std::cout << "File reading option\n";
             std::cout << "Filename: " << optarg << "\n";
+
+            file_env(optarg);
             break;
           case 'r':
             std::cout << "Random generate option\n";
-            break;
-          case 'p':
-            std::cout << "Percentage option\n";
-            std::cout << "value: " << optarg << "\n";
+            random_env();
             break;
           case ':':
             std::cout << "The option needs a value\n";
@@ -47,6 +46,8 @@ int main(int argc, char* argv[]) {
     }
     /* --- */
   } else { /* OPCIONES DE MENÚ */
+
+    std::string filename;
     int op = 5;
     while (op != 0) {
       std::cout << "\n\n --- Smart lookup with a-star algorithm menú ---\n";
@@ -68,8 +69,11 @@ int main(int argc, char* argv[]) {
           break;
 
         case 3:
-          file_env();
+          std::cout << "Type a valid filename: ";
+          std::cin >> filename;
+          file_env(filename);
           break;
+
         default:
           std::cout << "Option not suported\n";
           break;
@@ -156,7 +160,7 @@ void manual_env(void) {
 
   man_env_search.a_star_algorithm();
 
-  if (row_sz > 100 || col_sz > 100) {
+  if (row_sz >= 100 || col_sz >= 100) {
     std::cout << "Output file generated because of the size\n";
     std::ofstream output("man_result.txt");
     output << man_env_search << std::endl;
@@ -177,12 +181,12 @@ void introduce_obstacles(Environment& man_env) {
     std::cin >> obs_i_pos >> obs_j_pos;
 
     if (man_env.pos(obs_i_pos - 1, obs_j_pos - 1) == -1) {
-          std::cout << "\nERROR: Make sure that the numbers are between 1 and "
+      std::cout << "\nERROR: Make sure that the numbers are between 1 and "
                    "the limits\n"
                 << "try again\n\n";
+    } else {
+      man_env.set_obs(obs_i_pos - 1, obs_j_pos - 1);
     }
-
-    man_env.set_obs(obs_i_pos - 1, obs_j_pos - 1);
     std::cout << "Do you want to stop adding obstacles? (yes/no): ";
     std::cin >> continuer;
     if (continuer[0] == 'Y' || continuer[0] == 'y') {
@@ -289,7 +293,7 @@ void random_env(void) {
 
   rand_env_search.a_star_algorithm();
 
-  if (row_sz > 100 || col_sz > 100) {
+  if (row_sz >= 100 || col_sz >= 100) {
     std::cout << "Output file generated because of the size\n";
     std::ofstream output("rand_result.txt");
     output << rand_env_search << std::endl;
@@ -299,13 +303,9 @@ void random_env(void) {
   }
 }
 
-void file_env(void) {
+void file_env(std::string filename) {
   long row_sz, col_sz, st_pos_i, st_pos_j, g_pos_i, g_pos_j, num_obs, obs_pos_i,
       obs_pos_j, h_op;
-  std::string filename;
-
-  std::cout << "Type a valid filename: ";
-  std::cin >> filename;
 
   std::ifstream file(filename);
   if (!file)
@@ -330,7 +330,7 @@ void file_env(void) {
   Search a_star(env, h_op);
   a_star.a_star_algorithm();
 
-  if (row_sz > 100 || col_sz > 100) {
+  if (row_sz >= 100 || col_sz >= 100) {
     std::cout << "Output file generated because of the size\n";
     std::ofstream output("file_result.txt");
     output << a_star << std::endl;
