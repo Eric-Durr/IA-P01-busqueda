@@ -162,6 +162,11 @@ Por último, podemos destacar que cada vez que termine la ejecución del program
 ### 3.1. Metodología de desarrollo.
 
 <!-- TDD -->
+Para este apartado, hemos decidido utilizar un desarrollo guiado por pruebas, también conocido como TDD (Test-driven development). Esta técnica consiste en escribir primero las pruebas unitarias, seguidamente escribir el código fuente que queremos que pase la prueba satisfactoriamente, y por último, refactorizar el código escrito.
+
+
+Gracias a esto, podemos agilizar nuestro proceso de creación de código, llevado a cabo la implementación de diversos test, que nos han servido para ir desarrollando dentro de cada clase, los métodos necesarios requeridos para esta práctica. Además, hemos evitado la creación de métodos innecesarios o de código que no se utiliza en nuestro programa, produciendo así un mayor robustez y mantenibilidad ante el problema.
+
 <br>
 <br>
 
@@ -237,7 +242,7 @@ Escenario mediano (100*100). Encontrándose el coche en la posición (1,1) y la 
 
 | Funciones H | Número de nodos expandidos | Longitud del camino (pasos) | tiempo (ms) |
 | :------------- | :----------: | :-----------: | -----------: | 
-|  Euclidea | xxxxxxxxx |   198  | xxxxx |
+|  Euclidea | xxxxxxxxx |   198  | 134254257 |
 | Manhattan   | xxxxxxxxx |  198 | 251489 |
 
 <br>
@@ -260,26 +265,32 @@ Escenario grande (200*200). Encontrándose el coche en la posición (1,1) y la m
 
 <br>
 
-| Funciones H | Número de nodos expandidos | Longitud del camino (pasos) | tiempo (s) |
-| :------------- | :----------: | :-----------: | -----------: | 
-|  Euclidea | xxxxxxxxx | xxxxxxxx    | xxxx |
-| Manhattan   | xxxxxxxxx | xxxxxxxx  | xxxx |
-
-<br>
-<br>
+Escenario pequeño (50*50). Encontrándose el coche en la posición (1,1) y la meta en la (50,50)
 
 | Funciones H | Número de nodos expandidos | Longitud del camino (pasos) | tiempo (s) |
 | :------------- | :----------: | :-----------: | -----------: | 
-|  Euclidea | xxxxxxxxx | xxxxxxxx    | xxxx |
-| Manhattan   | xxxxxxxxx | xxxxxxxx  | xxxx |
+|  Euclidea | xxxxxxxxx | 98    | 7283968 |
+| Manhattan   | xxxxxxxxx | 98  | 425149 |
 
 <br>
 <br>
+
+Escenario mediano (100*100). Encontrándose el coche en la posición (1,1) y la meta en la (100,100)
+
+| Funciones H | Número de nodos expandidos | Longitud del camino (pasos) | tiempo (s) |
+| :------------- | :----------: | :-----------: | -----------: | 
+|  Euclidea | xxxxxxxxx | 198    | 80207118 |
+| Manhattan   | xxxxxxxxx | 200  | 39743238 |
+
+<br>
+<br>
+
+Escenario grande (200*200). Encontrándose el coche en la posición (1,1) y la meta en la (200,200)
 
 | Funciones H | Número de nodos expandidos | Longitud del camino (pasos) | tiempo (s) |
 | :------------- | :----------: | :-----------: | -----------: | 
 |  Euclidea | xxxxxxxxx | xxxxxxxx    | xxxx |
-| Manhattan   | xxxxxxxxx | xxxxxxxx  | xxxx |
+| Manhattan   | xxxxxxxxx | 398  | 48296333 |
 
 
 
@@ -291,21 +302,27 @@ Escenario grande (200*200). Encontrándose el coche en la posición (1,1) y la m
 
 <br>
 
-| Funciones H | Número de nodos expandidos | Longitud del camino (pasos) | tiempo (s) |
-| :------------- | :----------: | :-----------: | -----------: | 
-|  Euclidea | xxxxxxxxx | xxxxxxxx    | xxxx |
-| Manhattan   | xxxxxxxxx | xxxxxxxx  | xxxx |
-
-<br>
-<br>
+Escenario pequeño (50*50). Encontrándose el coche en la posición (1,1) y la meta en la (50,50)
 
 | Funciones H | Número de nodos expandidos | Longitud del camino (pasos) | tiempo (s) |
 | :------------- | :----------: | :-----------: | -----------: | 
-|  Euclidea | xxxxxxxxx | xxxxxxxx    | xxxx |
-| Manhattan   | xxxxxxxxx | xxxxxxxx  | xxxx |
+|  Euclidea | xxxxxxxxx | 126    | 913220 |
+| Manhattan   | xxxxxxxxx | No encuentra la meta  | 3683 |
 
 <br>
 <br>
+
+Escenario mediano (100*100). Encontrándose el coche en la posición (1,1) y la meta en la (100,100)
+
+| Funciones H | Número de nodos expandidos | Longitud del camino (pasos) | tiempo (s) |
+| :------------- | :----------: | :-----------: | -----------: | 
+|  Euclidea | xxxxxxxxx | xxxxxxxx    | xxxx |
+| Manhattan   | xxxxxxxxx | No encuentra la meta  | 1821 |
+
+<br>
+<br>
+
+Escenario grande (200*200). Encontrándose el coche en la posición (1,1) y la meta en la (200,200)
 
 | Funciones H | Número de nodos expandidos | Longitud del camino (pasos) | tiempo (s) |
 | :------------- | :----------: | :-----------: | -----------: | 
@@ -322,13 +339,7 @@ Escenario grande (200*200). Encontrándose el coche en la posición (1,1) y la m
 
 <br>
 
-| Funciones H | Número de nodos expandidos | Longitud del camino (pasos) | tiempo (s) |
-| :------------- | :----------: | :-----------: | -----------: | 
-|  Euclidea | xxxxxxxxx | xxxxxxxx    | xxxx |
-| Manhattan   | xxxxxxxxx | xxxxxxxx  | xxxx |
-
-<br>
-<br>
+Escenario pequeño (50*50). Encontrándose el coche en la posición (1,1) y la meta en la (50,50)
 
 | Funciones H | Número de nodos expandidos | Longitud del camino (pasos) | tiempo (s) |
 | :------------- | :----------: | :-----------: | -----------: | 
@@ -337,6 +348,18 @@ Escenario grande (200*200). Encontrándose el coche en la posición (1,1) y la m
 
 <br>
 <br>
+
+Escenario mediano (100*100). Encontrándose el coche en la posición (1,1) y la meta en la (100,100)
+
+| Funciones H | Número de nodos expandidos | Longitud del camino (pasos) | tiempo (s) |
+| :------------- | :----------: | :-----------: | -----------: | 
+|  Euclidea | xxxxxxxxx | xxxxxxxx    | xxxx |
+| Manhattan   | xxxxxxxxx | xxxxxxxx  | xxxx |
+
+<br>
+<br>
+
+Escenario grande (200*200). Encontrándose el coche en la posición (1,1) y la meta en la (200,200)
 
 | Funciones H | Número de nodos expandidos | Longitud del camino (pasos) | tiempo (s) |
 | :------------- | :----------: | :-----------: | -----------: | 
