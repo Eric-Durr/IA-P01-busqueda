@@ -1,5 +1,6 @@
 #include <unistd.h>
 
+#include <chrono>
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -8,6 +9,8 @@
 #include "../include/search.hpp"
 #include "../include/slot.hpp"
 #include "../include/smart_car.hpp"
+
+using namespace std::chrono;
 
 void error_msg(int opt);
 
@@ -158,9 +161,17 @@ void manual_env(void) {
 
   Search man_env_search(man_env, h_op);
 
+  auto start = high_resolution_clock::now();
+
   man_env_search.a_star_algorithm();
 
-  if (row_sz >= 100 || col_sz >= 100) {
+  auto stop = high_resolution_clock::now();
+  auto duration = duration_cast<microseconds>(stop - start);
+
+  std::cout << "Time taken by function: " << duration.count() << " microseconds"
+            << "\n";
+
+  if (row_sz > 100 || col_sz > 100) {
     std::cout << "Output file generated because of the size\n";
     std::ofstream output("man_result.txt");
     output << man_env_search << std::endl;
@@ -291,9 +302,17 @@ void random_env(void) {
 
   Search rand_env_search(rand_env, h_op);
 
+  auto start = high_resolution_clock::now();
+
   rand_env_search.a_star_algorithm();
 
-  if (row_sz >= 100 || col_sz >= 100) {
+  auto stop = high_resolution_clock::now();
+  auto duration = duration_cast<microseconds>(stop - start);
+
+  std::cout << "Time taken by function: " << duration.count() << " microseconds"
+            << "\n";
+
+  if (row_sz > 100 || col_sz > 100) {
     std::cout << "Output file generated because of the size\n";
     std::ofstream output("rand_result.txt");
     output << rand_env_search << std::endl;
@@ -328,9 +347,18 @@ void file_env(std::string filename) {
   file >> h_op;
 
   Search a_star(env, h_op);
+
+  auto start = high_resolution_clock::now();
+
   a_star.a_star_algorithm();
 
-  if (row_sz >= 100 || col_sz >= 100) {
+  auto stop = high_resolution_clock::now();
+  auto duration = duration_cast<microseconds>(stop - start);
+
+  std::cout << "Time taken by function: " << duration.count() << " microseconds"
+            << "\n";
+
+  if (row_sz > 100 || col_sz > 100) {
     std::cout << "Output file generated because of the size\n";
     std::ofstream output("file_result.txt");
     output << a_star << std::endl;
