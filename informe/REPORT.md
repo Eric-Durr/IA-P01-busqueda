@@ -96,9 +96,9 @@ Inteligencia Artificial - ESIT (Escuela superior de Ingeniería y Tecnología) U
 
 Nos encontramos ante un problema de estrategias de búsqueda para la resolución de la trayectoria mas óptima para un coche autónomo.
 
-Contamos con un entorno dimensionado en MxN, en el cual nuestro coche va a efectuar sus movimientos, hacia sus casillas vecinas(Norte, Sur, Este y Oeste). Este entorno esta compuesto por celdas libres y celdas ocupadas, en donde las celdas ocupadas podrán estar constituidas por un coche, una meta o varios obstáculos.
+Contamos con un entorno dimensionado en MxN, en el cual nuestro coche va a efectuar sus movimientos, hacia sus casillas vecinas(Norte, Sur, Este y Oeste). Este entorno esta compuesto por celdas libres y celdas ocupadas, donde las celdas ocupadas podrán estar constituidas por un coche, una meta o varios obstáculos.
 
-Nuestro coche, desde un punto inicial, deberá encontrar el camino mas óptimo teniendo en cuentas los diferentes entornos y obstáculos que se le pueden presentar para llegar hasta el punto de finalización(meta).
+Nuestro coche, desde un punto inicial, deberá encontrar el camino mas óptimo teniendo en cuentas los diferentes entornos y obstáculos que se le pueden presentar para llegar hasta el punto de finalización (meta).
 
 <br>
 <br>
@@ -119,11 +119,14 @@ Los estados y sus operadores, dependerán tanto del número y de dónde se encue
 <br>
 <br>
 
+
+<div id="id2d1">
+
 ### 2.1. Descripción de la interfaz.
 <br>
 <br>
 
-Hemos querido elegir C++ como lenguaje de desarrollo de simulación de esta práctica, ya que es un lenguaje de dominamos y hemos ido aprendiendo a lo largo de los cursos académicos. Nos beneficiamos de las ventajas que nos brinda la programación orientada a objetos, así como su modularidad. 
+Hemos querido elegir C++ como lenguaje de desarrollo de simulación de esta práctica, ya que es un lenguaje que dominamos y hemos ido aprendiendo a lo largo de los cursos académicos. Nos beneficiamos de las ventajas que nos brinda la programación orientada a objetos, así como su modularidad. 
 
 La visualización y simulación del entorno y sus elementos se ha realizado a través de terminal, gracias a un menú con diversas opciones para un fácil manejo para el usuario. Este menú da las opciones de introducir manualmente los datos, teniendo en cuenta la inserción de los obstáculos de manera manual o aleatoria, y la posibilidad de cargar un fichero con los datos introducidos en este. Los datos pedidos al usuarios serán el tamaño MxN del entorno, la posición (i,j) del coche, de la meta, y de los obstáculos, poniendo especial atención en que si se elige la opción aleatoria los obstáculos se generaran en posiciones arbitrarias, excluyendo la posición del coche y de la meta.
 
@@ -477,9 +480,14 @@ El algoritmo se sirve de la funcionalidad de unos cuantos métodos:
 
 **Programa principal "Smart lookup"**
 
+
+
 El programa principal tiene dos modos de uso
 
-- Modo mediante linea de comandos**
+
+<br>
+
+**Modo mediante linea de comandos**
 
 Para un acceso más rápido se ha hecho una lectura de la línea de comandos de manera que si se quisiera lanzar el programa mediante la lectura de un fichero que describa el entorno o directamente ejecutar una versión aleatoria del programa basta con
 ejecutar el programa con las opciones adecuadas
@@ -487,6 +495,10 @@ ejecutar el programa con las opciones adecuadas
 - ```./smart_lookup -r```
 
 Esta lectura se ha hecho mediante la función "getopt()" construida en C++.
+
+<br>
+
+**Modo por defecto (menú)**
 
 Sin embargo si se hiciera una ejecución sin argumentos del programa se entraría
 en un menú de opciones que irá guiando al usuario, estos aspectos ya han sido 
@@ -675,22 +687,29 @@ El trabajo con Git como herramienta colaborativa requiere también de un espacio
 ### 3.1. Metodología de desarrollo.
 
 <!-- TDD -->
-Para este apartado, hemos decidido utilizar un desarrollo guiado por pruebas, también conocido como TDD (Test-driven development). Esta técnica consiste en escribir primero las pruebas unitarias, seguidamente escribir el código fuente que queremos que pase la prueba satisfactoriamente, y por último, refactorizar el código escrito.
-
+Para este apartado, hemos decidido utilizar un desarrollo guiado por pruebas, también conocido como TDD (Test-driven development). Esta técnica consiste en escribir primero las pruebas de espectativas de código, seguidamente escribir el código fuente que queremos que pase la prueba satisfactoriamente, y por último, refactorizar el código escrito.
 
 Gracias a esto, podemos agilizar nuestro proceso de creación de código, llevado a cabo la implementación de diversos test, que nos han servido para ir desarrollando dentro de cada clase, los métodos necesarios requeridos para esta práctica. Además, hemos evitado la creación de métodos innecesarios o de código que no se utiliza en nuestro programa, produciendo así un mayor robustez y mantenibilidad ante el problema.
 
+Por otro lado, poder separar cada uno de los aspectos en diferentes fragmentos ejecutables permite la rápida y ágil detección de errores de funcionamiento, evitando tener que reescribir gran parte del código.
+
 <br>
 <br>
 
-### 3.2. Paradigma de programación.
-
-<!-- OOP y como -->
-<br>
-<br>
 
 ### 3.2. Metodología de colaboración  y distribución de carga.
-<!-- Git, GitHub, GitHub projects, ... -->
+
+Se ha intentado distribuir lo más equitativa y controladamente la carga de trabajo. Para cumplir ambas expectativas se ha optado por el usi de GitHub como plataforma principal para el acceso y control del trabajo colaborativo.
+
+Principalmente la herramienta git permite el desarrollo asíncrono del trabajo en grupo, ya que haciendo uso de las ramas se puede separar el desarrollo del mismo fichero de texto evitando los solapamientos y conflictos que esto pudiera causar.
+
+Empleando GitHub como plataforma podremos hacer uso de diversas funcionalidades colaborativ as que este aporta, como es el control de las ramas, las estadísticas de aportación de trabajo -- que bien podrían ser empleadas para reorganizar el volumen de trabajo -- y la herramienta tipo kanban (GitHub Projects) que permite definir y asignar una serie de tareas, además de controlar aquellas que ya están finalizadas.
+
+![Ejemplo de Projects de GitHub del informe](./image/gh_projects.png)
+
+Por otro lado Git ha permitido ir añadiendo funcionalidades y código de manera paulatina, cosa que junto al TDD comentado en el apartado anterior reduce en gran medida el tiempo de desarrollo y, por ende, la cantidad de errores.
+
+Como conclusión de este apartado el volumen de trabajo de ambos queda algo difuso, ya que no se ha asignado una tarea concreta a cada componente salvo la elaboración de los puntos del informe. En cuanto al desarrollo la distribución de código se ha hecho lo más paralela posible y repartida de modo que ambos componentes puedan conocer bien la implementación.
 
 <br>
 <br>
