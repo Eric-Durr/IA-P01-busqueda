@@ -167,7 +167,7 @@ void manual_env(void) {
   std::cout << "Time taken by function: " << duration.count() << " milliseconds"
             << "\n";
 
-  if (row_sz > 100 || col_sz > 100) {
+  if (row_sz >= 100 || col_sz >= 100) {
     std::cout << "Output file generated because of the size\n";
     std::ofstream output("man_result.txt");
     output << man_env_search << std::endl;
@@ -308,7 +308,7 @@ void random_env(void) {
   std::cout << "Time taken by function: " << duration.count() << " milliseconds"
             << "\n";
 
-  if (row_sz > 100 || col_sz > 100) {
+  if (row_sz >= 100 || col_sz >= 100) {
     std::cout << "Output file generated because of the size\n";
     std::ofstream output("rand_result.txt");
     output << rand_env_search << std::endl;
@@ -358,7 +358,7 @@ void file_env(void) {
   std::cout << "Time taken by function: " << duration.count() << " milliseconds"
             << "\n";
 
-  if (row_sz > 100 || col_sz > 100) {
+  if (row_sz >= 100 || col_sz >= 100) {
     std::cout << "Output file generated because of the size\n";
     std::ofstream output("file_result.txt");
     output << a_star << std::endl;

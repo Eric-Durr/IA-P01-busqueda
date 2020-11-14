@@ -136,8 +136,7 @@ Una vez se haya finalizado la inserción de todos los datos esperados, se genera
 
 Por último, podemos destacar que cada vez que termine la ejecución del programa, se limpiará la terminal y se lanzará de nuevo el menú por si el usuario desea volver a realizar el programa desde el principio, teníendo también la opción de salir de este.
 
-
-(INTRODUCIR CAPTURAS DE PANTALLA)
+![Ejemplo de ejecucioón del programa](./image/running_example.png)
 
 <br>
 <br>
@@ -925,8 +924,8 @@ Escenario pequeño (50*50). Encontrándose el coche en la posición (1,1) y la m
 
 | Funciones H | Número de nodos expandidos | Longitud del camino (pasos) | tiempo (ms) |
 | :------------- | :----------: | :-----------: | -----------: | 
-|  Euclidea | 2498 | 98    | 13081730 |
-| Manhattan   | xxxxxxxxx | 98  | 47356 |
+|  Euclidea | 2498 | 98    | 10451 |
+| Manhattan   | 193 | 98  | 40 |
 
 <br>
 <br>
@@ -936,8 +935,8 @@ Escenario mediano (100*100). Encontrándose el coche en la posición (1,1) y la 
 
 | Funciones H | Número de nodos expandidos | Longitud del camino (pasos) | tiempo (ms) |
 | :------------- | :----------: | :-----------: | -----------: | 
-|  Euclidea | xxxxxxxxx |   198  | 134254257 |
-| Manhattan   | xxxxxxxxx |  198 | 251489 |
+|  Euclidea | 9998 |   198  | 175603 |
+| Manhattan   | 393 |  198 | 234 |
 
 <br>
 <br>
@@ -946,8 +945,8 @@ Escenario grande (200*200). Encontrándose el coche en la posición (1,1) y la m
 
 | Funciones H | Número de nodos expandidos | Longitud del camino (pasos) | tiempo (ms) |
 | :------------- | :----------: | :-----------: | -----------: | 
-|  Euclidea | xxxxxxxxx | xxxxxxxx    | xxxx |
-| Manhattan   | xxxxxxxxx | 398  | 1664532 |
+|  Euclidea | 39998 | 398  | 2669206 (44 min)|
+| Manhattan   | 793 | 398 | 1239 |
 
 
 
@@ -963,8 +962,8 @@ Escenario pequeño (50*50). Encontrándose el coche en la posición (1,1) y la m
 
 | Funciones H | Número de nodos expandidos | Longitud del camino (pasos) | tiempo (s) |
 | :------------- | :----------: | :-----------: | -----------: | 
-|  Euclidea | xxxxxxxxx | 98    | 7283968 |
-| Manhattan   | xxxxxxxxx | 98  | 425149 |
+|  Euclidea | 1702 | 98    | 5316 |
+| Manhattan   | 455 | 98  | 269 |
 
 <br>
 <br>
@@ -973,8 +972,8 @@ Escenario mediano (100*100). Encontrándose el coche en la posición (1,1) y la 
 
 | Funciones H | Número de nodos expandidos | Longitud del camino (pasos) | tiempo (s) |
 | :------------- | :----------: | :-----------: | -----------: | 
-|  Euclidea | xxxxxxxxx | 198    | 80207118 |
-| Manhattan   | xxxxxxxxx | 200  | 39743238 |
+|  Euclidea | 7111 | 198    |  88758 |
+| Manhattan   | 994 | 198  | 1379 |
 
 <br>
 <br>
@@ -983,8 +982,10 @@ Escenario grande (200*200). Encontrándose el coche en la posición (1,1) y la m
 
 | Funciones H | Número de nodos expandidos | Longitud del camino (pasos) | tiempo (s) |
 | :------------- | :----------: | :-----------: | -----------: | 
-|  Euclidea | xxxxxxxxx | xxxxxxxx    | xxxx |
-| Manhattan   | xxxxxxxxx | 398  | 48296333 |
+|  Euclidea | 31100 | 398    | 1643390 (27 min) |
+| Manhattan   | 5424 | 398  | 39364 |
+
+
 
 
 
@@ -1000,8 +1001,8 @@ Escenario pequeño (50*50). Encontrándose el coche en la posición (1,1) y la m
 
 | Funciones H | Número de nodos expandidos | Longitud del camino (pasos) | tiempo (s) |
 | :------------- | :----------: | :-----------: | -----------: | 
-|  Euclidea | xxxxxxxxx | 126    | 913220 |
-| Manhattan   | xxxxxxxxx | No encuentra la meta  | 3683 |
+|  Euclidea | 3647 | 126    | 9132 |
+| Manhattan   | 4 | No encuentra la meta  | 1 |
 
 <br>
 <br>
@@ -1010,8 +1011,8 @@ Escenario mediano (100*100). Encontrándose el coche en la posición (1,1) y la 
 
 | Funciones H | Número de nodos expandidos | Longitud del camino (pasos) | tiempo (s) |
 | :------------- | :----------: | :-----------: | -----------: | 
-|  Euclidea | xxxxxxxxx | xxxxxxxx    | xxxx |
-| Manhattan   | xxxxxxxxx | No encuentra la meta  | 1821 |
+|  Euclidea | 5 | no encuentra la meta    | 1 |
+| Manhattan   | 2 | No encuentra la meta  | 1 |
 
 <br>
 <br>
@@ -1020,8 +1021,8 @@ Escenario grande (200*200). Encontrándose el coche en la posición (1,1) y la m
 
 | Funciones H | Número de nodos expandidos | Longitud del camino (pasos) | tiempo (s) |
 | :------------- | :----------: | :-----------: | -----------: | 
-|  Euclidea | xxxxxxxxx | xxxxxxxx    | xxxx |
-| Manhattan   | xxxxxxxxx | xxxxxxxx  | xxxx |
+|  Euclidea | 145 | no encuentra la meta    | 220 |
+| Manhattan   | 21 | no encuentra la meta  | 28 |
 
 <!-- Resultados empíricos -> la situación del coche influye en las probabilidades de encontrar meta, no es altamente improbable pero si mucho menos probable. -->
 
@@ -1031,7 +1032,7 @@ Escenario grande (200*200). Encontrándose el coche en la posición (1,1) y la m
 
 ### Evaluación de las tablas 80% obstáculos 
 
-<!-- No encuentra salida + nuevo intervalo de pruebas apto -->
+<!-- No encuentra salida + nuevo intervalo de pruebas apto + referencia a conclusiones-->
 
 
 
@@ -1049,6 +1050,8 @@ Escenario grande (200*200). Encontrándose el coche en la posición (1,1) y la m
 ## **6. Conclusiones.**
 <br>
 <br>
+
+<!-- limite de tamaño a 50% por ser altamente improbable + intervalo de pruebas apto + manhattan > euclidea -->
 
 
 <br>
