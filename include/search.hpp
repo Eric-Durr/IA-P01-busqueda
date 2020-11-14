@@ -20,6 +20,7 @@ class Search {
   std::vector<Slot> path_;
   Environment env_;
   int opcion_;
+  int n_expanded_;
 
  public:
   Search(Environment env, int opcion = 1);
@@ -45,6 +46,8 @@ class Search {
   double heuristic_function(const Slot& valor);
 
   int path_size(void) const { return path_.size(); }
+
+  int nodes_expanded(void) { return n_expanded_; };
 
   friend std::ostream& operator<<(std::ostream& os, Search& object);
 

@@ -3,10 +3,10 @@
 Slot::Slot(int loc_i, int loc_j, slot_t op)
     : loc_i_(loc_i),
       loc_j_(loc_j),
-      obstacle_(op),
       parent_i_(-1),
       parent_j_(-1),
-      g_(0) {
+      g_(0),
+      obstacle_(op) {
   if (op == C) car_.pos(loc_i, loc_j);
 }
 

@@ -1,16 +1,17 @@
 #include "../include/search.hpp"
 
 Search::Search(Environment env, int opcion)
-    : goal_(env.get_goal()), opcion_(opcion), env_(env) {
+    : goal_(env.get_goal()), env_(env), opcion_(opcion), n_expanded_(0) {
   start_.pos_i(env_.get_car().pos()[0]);
   start_.pos_j(env_.get_car().pos()[1]);
 }
 
 Search::Search(Search& other)
-    : goal_(other.goal_),
-      start_(other.start_),
+    : start_(other.start_),
+      goal_(other.goal_),
+      env_(other.env_),
       opcion_(other.opcion_),
-      env_(other.env_) {
+      n_expanded_(other.n_expanded_) {
   for (auto slot : other.open_) {
     open_.push_back(slot);
   }
@@ -31,6 +32,7 @@ double Search::heuristic_function(const Slot& valor) {
     default:
       break;
   }
+  return 0;
 }
 
 void Search::a_star_algorithm(void) {
@@ -87,6 +89,7 @@ void Search::a_star_algorithm(void) {
           var.set_f(new_f);
 
           open_.push_back(var);
+          n_expanded_++;
         }
       }
     }
@@ -97,6 +100,7 @@ void Search::a_star_algorithm(void) {
     std::cout << std::endl;
     std::cout << std::endl;
     std::cout << "VEHICLE CANT REACH THE GOAL\n ";
+    std::cout << "Nodes expanded: " << n_expanded_ << std::endl;
   }
   return;
 }
@@ -132,7 +136,8 @@ std::ostream& operator<<(std::ostream& os, Search& object) {
   os << " --- MOVES TRACEBACK ---\n\n";
 
   os << "Number of moves: " << object.path_size() << "\n";
-  // os << "MOVES: " << object.path_to_string() << "\n";
+  std::cout << "Nodes expanded: " << object.nodes_expanded() << std::endl;
+  os << "MOVES: " << object.path_to_string() << "\n";
   for (int i = object.path_size() - 1; i > 0; i--) {
     if (object.path_[i].pos_i() == object.path_[i].parent_i() &&
         object.path_[i].pos_j() < object.path_[i].parent_j()) {

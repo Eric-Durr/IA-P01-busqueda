@@ -925,7 +925,7 @@ Escenario pequeño (50*50). Encontrándose el coche en la posición (1,1) y la m
 
 | Funciones H | Número de nodos expandidos | Longitud del camino (pasos) | tiempo (ms) |
 | :------------- | :----------: | :-----------: | -----------: | 
-|  Euclidea | xxxxxxxxx | 98    | 13081730 |
+|  Euclidea | 2498 | 98    | 13081730 |
 | Manhattan   | xxxxxxxxx | 98  | 47356 |
 
 <br>
