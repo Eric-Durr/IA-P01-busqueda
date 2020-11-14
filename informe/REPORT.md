@@ -1,5 +1,4 @@
 <div style="text-align: justify">
-<br>
 
 <span>
 
@@ -9,22 +8,18 @@
 
 
 <br>
-<br>
 
 <div style="text-align: center">
 
 # Estrategias de búsqueda | Informe  
 
 
-<br>
 
 Inteligencia Artificial - ESIT (Escuela superior de Ingeniería y Tecnología) ULL
 </div>
 
 ***
 
-<br>
-<br>
 <br>
 <br>
 
@@ -34,15 +29,9 @@ Inteligencia Artificial - ESIT (Escuela superior de Ingeniería y Tecnología) U
 
 <br>
 <br>
-<br>
-<br>
-    
-    Informe desarrollado por Éric Dürr Sierra y Elena Rijo García
 
-                            (alu0101027005)      (alu0101265421)
-<br>
-<br>
-<br>
+Informe desarrollado por [Éric Dürr Sierra](eric.durr.20@ull.edu.es) y [Elena Rijo García](alu0101265421@ull.edu.es)
+                           
 <br>
 
 <!-- end of cover page --->
@@ -60,19 +49,22 @@ una breve explicación sobre las metodologías empleadas.
 <br>
 <br>
 
+***
 
 ## **Índice** &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Página:
  
 
-## 1. [Introducción](#id1) 
-## 2. [Entrorno de simulación y programación](#id2) 
-## 3. [Metodología de trabajo](#id3)  
-## 4. [Algoritmos de búsqueda](#id4) 
-## 5. [Evaluación experimental del algoritmo](#id5)  
-## 6. [Conclusiones](#id6) 
-## 7. [Referencias](#id7) 
+## 1. [Introducción](#id1) · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·  &emsp;&emsp;3
+## 2. [Entrorno de simulación y programación](#id2) · · · · · · · · · · · · · · · · · · · ·   &emsp;&emsp;4
+## 3. [Metodología de trabajo](#id3) · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·   &emsp;&emsp;5  
+## 4. [Algoritmos de búsqueda](#id4) · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·   &emsp;&emsp;5
+## 5. [Evaluación experimental del algoritmo](#id5) · · · · · · · · · · · · · · · · · · · · ·  &emsp;&emsp;4  
+## 6. [Conclusiones](#id6)  · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·  &emsp;&emsp;3
+## 7. [Referencias](#id7)  · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · &emsp;&emsp;3
 
 
+<br>
+<br>
 <br>
 <br>
 <br>
@@ -128,7 +120,15 @@ Nuestro coche, desde un punto inicial, deberá encontrar el camino mas óptimo t
 El espacio de estados se compondrá por un estado inicial, en el cual en su entorno tendrá el coche y la meta en la posición indicada por el usuario, además de definir dónde y cuántos obstáculos habría. También un estado final, en donde el coche llegaría a la posición de la meta.
 
 Los estados y sus operadores, dependerán tanto del número y de dónde se encuentren los obstáculos como de la posición de la meta y del coche. Además, tenemos que tener en cuenta que cada movimiento del coche se va a ver influido por el estado de la casilla, ya que si hay casillas ocupadas, este no se podría mover hacia ella, reduciendo así el número posible de pasos.
- 
+
+<br>
+<br>
+<br>
+<br> 
+<br>
+<br>
+<br>
+<br> 
 <br>
 <br>
 <div id="id2">
@@ -136,10 +136,9 @@ Los estados y sus operadores, dependerán tanto del número y de dónde se encue
 <br>
 
 ## **2. Entorno de simulación y programación.**
+
 <br>
 <br>
-
-
 <div id="id2d1">
 
 ### 2.1. Descripción de la interfaz.
@@ -496,9 +495,10 @@ El algoritmo se sirve de la funcionalidad de unos cuantos métodos:
 
 <br>
 <br>
+<br>
+<br>
 
 **Programa principal "Smart lookup"**
-
 
 
 El programa principal tiene dos modos de uso
@@ -506,7 +506,7 @@ El programa principal tiene dos modos de uso
 
 <br>
 
-**Modo mediante linea de comandos**
+- Modo mediante linea de comandos
 
 Para un acceso más rápido se ha hecho una lectura de la línea de comandos de manera que si se quisiera lanzar el programa mediante la lectura de un fichero que describa el entorno o directamente ejecutar una versión aleatoria del programa basta con
 ejecutar el programa con las opciones adecuadas
@@ -517,7 +517,7 @@ Esta lectura se ha hecho mediante la función "getopt()" construida en C++.
 
 <br>
 
-**Modo por defecto (menú)**
+- Modo por defecto (menú)
 
 Sin embargo si se hiciera una ejecución sin argumentos del programa se entraría
 en un menú de opciones que irá guiando al usuario, estos aspectos ya han sido 

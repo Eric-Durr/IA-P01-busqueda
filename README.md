@@ -10,24 +10,26 @@ programación C++ al cual se le han añadido algunas librerías.
 .
 |____docs              # Directorio para los ficheros de documentación.
 |____include           # Directorio para los ficheros de cabecera y librerías.
+|____informe           # Directorio contenedor del informe y sus recursos.
 |____test              # Directorio para los ficheros de testing.
 |____src               # Directorio para los ficheros de código fuente.
 |____.gitignore        # Fichero de filtrado del remoto.
 |____makefile          # Fichero de automatización para C++.
 |____README.md         # Fichero de presentación del repositorio.
+|____smart_lookup.txt  # Fichero de descripción de un entorno a resolver.
+
 
 ```
 
 ## Autores
-    [Elena Rijo García](alu0101265421@ull.edu.es)
-    [Eric Dürr Sierra](eric.durr.20@ull.edu.es) 
+[Elena Rijo García](alu0101265421@ull.edu.es)
+
+[Eric Dürr Sierra](eric.durr.20@ull.edu.es) 
 ## Dependencias
 
 - Catch2 (Librería de testing C++ para aplicar TDD)
     [Proyecto GitHub](https://github.com/catchorg/Catch2)
     [Video informativo](https://www.youtube.com/watch?v=CGuWYqHsOxI)
-- Algoritmo de busqueda
-    [ALGORITMO DE BÚSQUEDA A*](https://escarbandocodigo.wordpress.com/2011/07/11/1051/)
 
 ## Uso del proyecto
 
