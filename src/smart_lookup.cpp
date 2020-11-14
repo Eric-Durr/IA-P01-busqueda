@@ -162,9 +162,9 @@ void manual_env(void) {
   man_env_search.a_star_algorithm();
 
   auto stop = high_resolution_clock::now();
-  auto duration = duration_cast<microseconds>(stop - start);
+  auto duration = duration_cast<milliseconds>(stop - start);
 
-  std::cout << "Time taken by function: " << duration.count() << " microseconds"
+  std::cout << "Time taken by function: " << duration.count() << " milliseconds"
             << "\n";
 
   if (row_sz > 100 || col_sz > 100) {
@@ -303,9 +303,9 @@ void random_env(void) {
   rand_env_search.a_star_algorithm();
 
   auto stop = high_resolution_clock::now();
-  auto duration = duration_cast<microseconds>(stop - start);
+  auto duration = duration_cast<milliseconds>(stop - start);
 
-  std::cout << "Time taken by function: " << duration.count() << " microseconds"
+  std::cout << "Time taken by function: " << duration.count() << " milliseconds"
             << "\n";
 
   if (row_sz > 100 || col_sz > 100) {
@@ -353,9 +353,9 @@ void file_env(void) {
   a_star.a_star_algorithm();
 
   auto stop = high_resolution_clock::now();
-  auto duration = duration_cast<microseconds>(stop - start);
+  auto duration = duration_cast<milliseconds>(stop - start);
 
-  std::cout << "Time taken by function: " << duration.count() << " microseconds"
+  std::cout << "Time taken by function: " << duration.count() << " milliseconds"
             << "\n";
 
   if (row_sz > 100 || col_sz > 100) {
