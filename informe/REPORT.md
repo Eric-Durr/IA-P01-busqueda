@@ -1,23 +1,37 @@
-# Informe | estrategias de búsqueda
+<div style="text-align: justify">
+<br>
+
+<span>
+
+![logo de la ull](./image/marca-universidad-de-la-laguna-original.png)
+<span>
+
+
+
+<br>
+<br>
+
+<div style="text-align: center">
+
+# Estrategias de búsqueda | Informe  
+
 
 <br>
 
 Inteligencia Artificial - ESIT (Escuela superior de Ingeniería y Tecnología) ULL
+</div>
+
 ***
 
 <br>
 <br>
 <br>
 <br>
-<br>
-<br>
-<br>
 
-![IA front image](images/portada.jpg)
 
-<br>
-<br>
-<br>
+![IA front image](./image/portada.jpg  "image author: @upklyak, source: freepik")
+
+
 <br>
 <br>
 <br>
@@ -32,9 +46,15 @@ Inteligencia Artificial - ESIT (Escuela superior de Ingeniería y Tecnología) U
 <br>
 
 <!-- end of cover page --->
+
+En este documento se van a exponer los aspectos relacionados a la práctica de estrategias de búsqueda. El contenido consta de una exposición de la 
+implementación, las pruebas y conclusiones para el algoritmo implementado y
+una breve explicación sobre las metodologías empleadas.
+
+<br>
+
 ***
 
-<introducción al documento>
 
 <br>
 <br>
@@ -1053,6 +1073,27 @@ Escenario grande (200*200). Encontrándose el coche en la posición (1,1) y la m
 
 <!-- limite de tamaño a 50% por ser altamente improbable + intervalo de pruebas apto + manhattan > euclidea -->
 
+Tras todas las pruebas realizadas uno de los aspectos más notables es la 
+ineficiencia del algoritmo implementado al aplicar la función heurística 
+euclídea ya que expande la mayor cantidad de nodos posibles, se camufla un poco
+esta ineficiencia cuando el entorno consta de muchos obstáculos, sin embargo en
+todas las pruebas se ha visto superada por las pruebas que implican la función
+heurística manhattan.
+
+Por otro lado las pruebas del algoritmo también han servido para destacar algunas
+limitaciones del programa:
+
+1. El máximo tamaño de entorno sin perder eficiencia ronda las 200 x 200 casillas,
+ es a partir de entonces cuando se nota un ralentizamiento en el cómputo del 
+ camino óptimo.
+
+2. Ante un volumen del 50% de obstáculos se vuelve altamente improbable hallar una 
+solución.
+
+Este último aspecto ha servido para establecer como límite superior un 50% de 
+obstáculos y, en base a ello, se ha establecido un rango más adecuado en el 
+programa para hacer pruebas con diversos porcentajes.
+
 
 <br>
 <br>
@@ -1076,3 +1117,4 @@ Escenario grande (200*200). Encontrándose el coche en la posición (1,1) y la m
 
 <br>
 <br>
+</div>
