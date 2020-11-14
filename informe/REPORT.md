@@ -663,7 +663,7 @@ una opción de ratio de obstáculos y llamando al método ya descrito [random_ob
 Se ha escogido un entorno basado en el lenguaje C++ por diversos motivos. Fundamentalmente la comodidad de usar un lenguaje ya conocido y en el que ambos
 componentes pueden manejarse de manera independiente.
 
-Un punto muy positivo que ayudó a la elección del lenguaje es la amplia comunidad y volumen de documentación del que dispone. Esto ha facilitado en gran medida el desarrollo del proytecto. También haq influido en la posibilidad de implementar técnicas de desarrollo como TDD o BDD mediante librerías que la comunidad ha desarrollado de manera opensource como es Catch2.
+Un punto muy positivo que ayudó a la elección del lenguaje es la amplia comunidad y volumen de documentación del que dispone. Esto ha facilitado en gran medida el desarrollo del proytecto. También ha influido en la posibilidad de implementar técnicas de desarrollo como TDD o BDD mediante librerías que la comunidad ha desarrollado de manera opensource como es ***Catch2***.
 
 También es bastante similar a muchos lenguajes por lo que muchas personas que quisieran acceder al proyecto podrían entender muchos de los aspectos que lo componen
 
@@ -1023,7 +1023,7 @@ Escenario grande (200*200). Encontrándose el coche en la posición (1,1) y la m
 |  Euclidea | xxxxxxxxx | xxxxxxxx    | xxxx |
 | Manhattan   | xxxxxxxxx | xxxxxxxx  | xxxx |
 
-
+<!-- Resultados empíricos -> la situación del coche influye en las probabilidades de encontrar meta, no es altamente improbable pero si mucho menos probable. -->
 
 <br>
 <br>
@@ -1031,34 +1031,7 @@ Escenario grande (200*200). Encontrándose el coche en la posición (1,1) y la m
 
 ### Evaluación de las tablas 80% obstáculos 
 
-<br>
-
-Escenario pequeño (50*50). Encontrándose el coche en la posición (1,1) y la meta en la (50,50)
-
-| Funciones H | Número de nodos expandidos | Longitud del camino (pasos) | tiempo (s) |
-| :------------- | :----------: | :-----------: | -----------: | 
-|  Euclidea | xxxxxxxxx | xxxxxxxx    | xxxx |
-| Manhattan   | xxxxxxxxx | xxxxxxxx  | xxxx |
-
-<br>
-<br>
-
-Escenario mediano (100*100). Encontrándose el coche en la posición (1,1) y la meta en la (100,100)
-
-| Funciones H | Número de nodos expandidos | Longitud del camino (pasos) | tiempo (s) |
-| :------------- | :----------: | :-----------: | -----------: | 
-|  Euclidea | xxxxxxxxx | xxxxxxxx    | xxxx |
-| Manhattan   | xxxxxxxxx | xxxxxxxx  | xxxx |
-
-<br>
-<br>
-
-Escenario grande (200*200). Encontrándose el coche en la posición (1,1) y la meta en la (200,200)
-
-| Funciones H | Número de nodos expandidos | Longitud del camino (pasos) | tiempo (s) |
-| :------------- | :----------: | :-----------: | -----------: | 
-|  Euclidea | xxxxxxxxx | xxxxxxxx    | xxxx |
-| Manhattan   | xxxxxxxxx | xxxxxxxx  | xxxx |
+<!-- No encuentra salida + nuevo intervalo de pruebas apto -->
 
 
 
