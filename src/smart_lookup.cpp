@@ -19,31 +19,31 @@ void introduce_obstacles(Environment& man_env);
 
 void random_env(void);
 
-void file_env(void);
+void file_env(std::string filename);
 
 int main(int argc, char* argv[]) {
+  std::string filename;
+
   if (argc > 1) { /* OPCIONES DE LINEA DE COMANDO */
     /* Procesado de la linea de comandos | WIP*/
     {
       int opt;
-      while ((opt = getopt(argc, argv, ":f:rp:")) != -1) {
+      while ((opt = getopt(argc, argv, ":f:r")) != -1) {
         switch (opt) {
           case 'f':
             std::cout << "File reading option\n";
-            std::cout << "Filename: " << optarg << "\n";
+            file_env(optarg);
             break;
           case 'r':
             std::cout << "Random generate option\n";
-            break;
-          case 'p':
-            std::cout << "Percentage option\n";
-            std::cout << "value: " << optarg << "\n";
+            random_env();
             break;
           case ':':
             std::cout << "The option needs a value\n";
             break;
           case '?':
             std::cout << "Unknown option\n";
+            std::cout << "Usage: ./smart_lookup [-f / -r] [filename]\n";
             break;
         }
       }
@@ -71,7 +71,11 @@ int main(int argc, char* argv[]) {
           break;
 
         case 3:
-          file_env();
+
+          std::cout << "Type a valid filename: ";
+          std::cin >> filename;
+
+          file_env(filename);
           break;
         default:
           std::cout << "Option not suported\n";
@@ -318,13 +322,9 @@ void random_env(void) {
   }
 }
 
-void file_env(void) {
+void file_env(std::string filename) {
   long row_sz, col_sz, st_pos_i, st_pos_j, g_pos_i, g_pos_j, num_obs, obs_pos_i,
       obs_pos_j, h_op;
-  std::string filename;
-
-  std::cout << "Type a valid filename: ";
-  std::cin >> filename;
 
   std::ifstream file(filename);
   if (!file)
