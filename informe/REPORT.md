@@ -1034,7 +1034,7 @@ Escenario grande (200*200). Encontrándose el coche en la posición (1,1) y la m
 
 <!-- No encuentra salida + nuevo intervalo de pruebas apto + referencia a conclusiones-->
 
-
+![Nuevo intervalo extendido de volúmenes de obstáculos](./image/random_options.png)
 
 <br>
 <br>
