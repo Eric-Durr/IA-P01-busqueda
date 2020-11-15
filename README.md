@@ -36,3 +36,10 @@ programación C++ al cual se le han añadido algunas librerías.
 - ```$ make``` -> Compilar el programa
 - ```$ make clean``` -> Eliminar los ficheros de construcción y el binario
 - ```$ make test``` -> Compilar y ejecutar los tests del proyecto
+
+## Ejecución del programa
+
+- ```./smart_lookup``` -> modo menú
+- ```./smart_lookup -f smart_lookup.txt``` -> ejecución directa del programa por lectura de fichero
+
+- ```./smart_lookup -r ``` -> ejecución directa del modo aleatorio
